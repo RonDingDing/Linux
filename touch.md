@@ -22,7 +22,7 @@
 |-r|--reference=文件|使用指定文件的时间属性替代当前时间
 |-t STAMP||使用[[CC]YY]MMDDhhmm[.ss] 格式的时间替代当前时间
 ||--time=WORD|使用WORD 指定的时间：access、atime、use 都等于-a选项的效果，而modify、mtime 等于-m 选项的效果|
-|--help||显示此帮助信息并退出
-|--version||显示版本信息并退出
+||--help|显示此帮助信息并退出
+||--version|显示版本信息并退出
 
 请注意，-d 和-t 选项可接受不同的时间/日期格式。
