@@ -1,0 +1,165 @@
+USERDEL(8)                       系统管理命令                       USERDEL(8)
+
+
+
+名
+       userdel - 删除用户账户和相关文件
+
+大
+       userdel [选项] 登录
+
+描
+       userdel 修改系统账户文件，删除与用户名 LOGIN
+       相关的所以项目。给出的用户名必须存在。
+
+选
+       userdel 可以使用的选项有：
+
+       -f, --force
+           此选项强制删除用户账户，甚至用户仍然在登录状态。它也强制 userdel
+           删除用户的主目录和邮箱，即使其它用户也使用同一个主目录或邮箱不属于指定的用户。如果
+           /etc/login.defs 中的 USERGROUPS_ENAB 定义为
+           yes，并且如果有一个和用户同名的组，也会删除此组，即使它仍然是别的用户的主组。
+
+           注意：此选项危险，可能会破坏系统的稳定性。
+
+       -h, --help
+           现实帮助信息并退出。
+
+       -r, --remove
+           用户主目录中的文件将随用户主目录和用户邮箱一起删除。在其它文件系统中的文件必须手动搜索并删除。
+
+           邮箱在 login.defs 文件中的 MAIL_DIR 变量中定义。
+
+       -R, --rootCHROOT_DIR
+           Apply changes in the CHROOT_DIR directory and use the configuration
+           files from the CHROOT_DIR directory.
+
+       -Z, --selinux-user
+           移除用户登录的所有 SELinux 用户映射。
+
+配
+       在 /etc/login.defs 中有如下配置变量，可以用来更改此工具的行为：
+
+       MAIL_DIR (string)
+           邮箱目录。修改或删除用户账户时需要处理邮箱，如果没有指定，将使用编译时指定的默认值。
+
+       MAIL_FILE (string)
+           定义用户邮箱文件的位置(相对于主目录)。
+
+       MAIL_DIR and MAIL_FILE 变量由 useradd，usermod 和 userdel
+       用于创建、移动或删除用户邮箱。
+
+       如果 MAIL_CHECK_ENAB 设置为 yes，它们也被用于定义 MAIL 环境变量。
+
+       MAX_MEMBERS_PER_GROUP (number)
+           每个组条目的最大成员数。达到最大值时，在 /etc/group
+           开始一个新条目(行)(使用同样的名称，同样的密码，同样的 GID)。
+
+           默认值是 0，意味着组中的成员数没有限制。
+
+           此功能(分割组)允许限制组文件中的行长度。这对于确保 NIS 组的行比长于
+           1024 字符。
+
+           如果要强制这个限制，可以使用 25。
+
+           注意：分割组可能不受所有工具的支持(甚至在 Shadow
+           工具集中)。您不应该使用这个变量，除非真的需要。
+
+       USERDEL_CMD (string)
+           如果定义了，这是删除账户时执行的命令。它应该移除所有属于此用户的的
+           at/cron/print 等作业(作为第一个参数传递)。
+
+           这个脚本的返回值并不被带到账户中去。
+
+           这是一个示例脚本，它移除用户的 cron、at 和 print 作业：
+
+               #! /bin/sh
+
+               # 检查需要的参数
+               if [ $# != 1 ]; then
+                    echo "Usage: $0 username"
+                    exit 1
+               fi
+
+               # 移除 cron 作业
+               crontab -r -u $1
+
+               # 移除 at 作业
+               # 注意这将移除所有属于同一个 UID 的作业
+               # 即使此 ID 由多个用户名共享
+               AT_SPOOL_DIR=/var/spool/cron/atjobs
+               find $AT_SPOOL_DIR -name "[^.]*" -type f -user $1 -delete \;
+
+               # 移除 print 作业
+               lprm $1
+
+               # 全部完成
+               exit 0
+
+
+       USERGROUPS_ENAB (boolean)
+           如果 uid 和 gid 相同，用户名和主用户名也相同，使非 root
+           组的组掩码位和属主位相同 (如：022 -> 002, 077 -> 007)。
+
+           如果设置为 yes，如果组中没有成员了，userdel 将移除此用户组，useradd
+           创建用户时，也会创建一个同名的默认组。
+
+文
+       /etc/group
+           组账户信息。
+
+       /etc/login.defs
+           Shadow 密码套件配置。
+
+       /etc/passwd
+           用户账户信息。
+
+       /etc/shadow
+           安全用户账户信息。
+
+退
+       userdel 命令使用如下值退出：
+
+       0
+           成功
+
+       1
+           无法更新密码文件
+
+       2
+           无效的命令语法
+
+       6
+           指定的用户不存在
+
+       8
+           用户已经登录
+
+       10
+           无法更新组文件
+
+       12
+           无法删除主目录
+
+CAVEATS
+       如果某账户有正在运行的进程，userdel
+       不会允许此账户。此时，您可能必须要杀死那写进程或者锁定用户的密码和账户，并稍后再删除账户。-f
+       选项可以强制此删除账户。
+
+       您应该手动检查所以文件系统，以确保没有遗留此用户的文件。
+
+       您不能在 NIS 客户端上移除任何 NIS 属性。这必须在 NIS 服务器上执行。
+
+       如果在 /etc/login.defs 中 USERGROUPS_ENAB 设置为 yes， userdel
+       将删除同名组。为了避免损坏 passwd 和 group 数据库，userdel
+       将会检查这个主是否被别的用户用作主组，如果有，将只发出警告并不删除此组。-f
+       选项可以强制删除此组。
+
+参
+       chfn(1), chsh(1), passwd(1), login.defs(5), gpasswd(8), groupadd(8),
+       groupdel(8), groupmod(8), useradd(8), usermod(8).
+
+
+
+shadow-utils 4.1.5.1              2016-11-05                        USERDEL(8)

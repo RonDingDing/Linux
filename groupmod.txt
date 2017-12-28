@@ -1,0 +1,114 @@
+GROUPMOD(8)                      系统管理命令                      GROUPMOD(8)
+
+
+
+名
+       groupmod - modify a group definition on the system
+
+大
+       groupmod [选项] GROUP
+
+描
+       The groupmod command modifies the definition of the specified GROUP by
+       modifying the appropriate entry in the group database.
+
+选
+       groupmod 命令可以接受的选项有：
+
+       -g, --gidGID
+           The group ID of the given GROUP will be changed to GID.
+
+           The value of GID must be a non-negative decimal integer. This value
+           must be unique, unless the -o option is used.
+
+           Users who use the group as primary group will be updated to keep
+           the group as their primary group.
+
+           Any files that have the old group ID and must continue to belong to
+           GROUP, must have their group ID changed manually.
+
+           No checks will be performed with regard to the GID_MIN, GID_MAX,
+           SYS_GID_MIN, or SYS_GID_MAX from /etc/login.defs.
+
+       -h, --help
+           现实帮助信息并退出。
+
+       -n, --new-nameNEW_GROUP
+           The name of the group will be changed from GROUP to NEW_GROUP name.
+
+       -o, --non-unique
+           When used with the -g option, allow to change the group GID to a
+           non-unique value.
+
+       -p, --passwordPASSWORD
+           已经加密过的密码，就像 crypt(3) 返回的那样。
+
+           注
+
+           您应该确保密码符合系统的密码政策。
+
+       -R, --rootCHROOT_DIR
+           Apply changes in the CHROOT_DIR directory and use the configuration
+           files from the CHROOT_DIR directory.
+
+配
+       在 /etc/login.defs 中有如下配置变量，可以用来更改此工具的行为：
+
+       MAX_MEMBERS_PER_GROUP (number)
+           每个组条目的最大成员数。达到最大值时，在 /etc/group
+           开始一个新条目(行)(使用同样的名称，同样的密码，同样的 GID)。
+
+           默认值是 0，意味着组中的成员数没有限制。
+
+           此功能(分割组)允许限制组文件中的行长度。这对于确保 NIS 组的行比长于
+           1024 字符。
+
+           如果要强制这个限制，可以使用 25。
+
+           注意：分割组可能不受所有工具的支持(甚至在 Shadow
+           工具集中)。您不应该使用这个变量，除非真的需要。
+
+文
+       /etc/group
+           组账户信息。
+
+       /etc/gshadow
+           安全组账户信息。
+
+       /etc/login.defs
+           Shadow 密码套件配置。
+
+       /etc/passwd
+           用户账户信息。
+
+退
+       groupmod 命令可以返回如下值：
+
+       0
+           成功
+
+       2
+           无效的命令语法
+
+       3
+           给了选项一个无效的参数
+
+       4
+           指定的组不存在
+
+       6
+           指定的组不存在
+
+       9
+           组名已经在使用
+
+       10
+           无法更新组文件
+
+参
+       chfn(1), chsh(1), passwd(1), gpasswd(8), groupadd(8), groupdel(8),
+       login.defs(5), useradd(8), userdel(8), usermod(8).
+
+
+
+shadow-utils 4.1.5.1              2016-11-05                       GROUPMOD(8)

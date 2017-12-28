@@ -1,0 +1,58 @@
+REPQUOTA(8)                 System Manager's Manual                REPQUOTA(8)
+
+
+
+NAME(名
+       repquota - 文件系统配额的汇总
+
+SYNOPSIS(总
+       repquota [ -vugs ] filesystem...
+
+       repquota [ -avugs ]
+
+DESCRIPTION(描
+       repquota
+       显示与配额文件相关的信息以及对于指定文件系统的磁盘使用情况和配额的汇总.
+       对于每个用户,显示当前的文件数和空间大小(以千字节计),还有由  setquota(8)
+       或 edquota(8) 创建的任何配额.
+
+OPTIONS(选
+       -a     包含对所有已挂载的文件系统的统计.
+
+       -v     对所有文件系统报告配额情况,即使该文件系统根本就没使用.
+
+       -g     报告组的配额.
+
+       -u     报告用户的配额.这是默认的选项.
+
+       -s     包含完全的统计信息.
+
+       只有超级用户可以浏览不属于他们的配额.
+
+FILES(相
+       aquota.user         位于文件系统root下的用户配额文件.
+       aquota.group        位于文件系统root下的组配额文件.
+       /etc/mtab           已挂载的文件系统表
+
+SEE ALSO(另
+       quota(1),  quotactl(2),   fstab(5),   setquota(8),   edquota(8),   quo‐
+       tacheck(8), quotaon(8)
+
+AUTHOR(作
+       Jan Kara <jack@atrey.karlin.mff.cuni.cz>
+       用户界面取自老的应用文档,它的作者是:
+       Marco van Wieringen <mvw@planets.elm.net>
+
+
+[中
+       riser <boomer@ccidnet.com>
+
+[中
+       2001/7/19
+
+[中
+       http://cmpp.linuxforum.net
+
+
+
+4th Berkeley Distribution     1999年8月20日星期五                  REPQUOTA(8)

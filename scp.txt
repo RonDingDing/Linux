@@ -1,0 +1,95 @@
+SCP(1)                    BSD General Commands Manual                   SCP(1)
+
+NAME
+     scp — 安全复制(远程文件复制程序)
+
+总
+     scp [-pqrvBC1246] [-F ssh_config] [-S program] [-P port] [-c cipher]
+     [-i identity_file] [-l limit] [-o ssh_option] [[user@]host1:]file1 [...]
+     [[user@]host2:]file2
+
+描
+     scp 在网络中的主机间进行文件复制。 它用 ssh(1) 来传输及验证数据，提供与
+     ssh(1) 相同的安全保护。 它不象 rcp(1), scp 会根据需要询问口令。
+
+     在任何文件名中都可以包含主机名和用户名，用来指定从/向该主机复制此文件。
+     Copies between two remote hosts are permitted.
+
+     The options are as follows:
+
+     -c cipher
+             Selects the cipher to use for encrypting the data transfer.  This
+             option is directly passed to ssh(1).
+
+     -i identity_file
+             Selects the file from which the identity (private key) for RSA
+             authentication is read.  This option is directly passed to
+             ssh(1).
+
+     -l limit
+             Limits the used bandwidth, specified in Kbit/s.
+
+     -p      Preserves modification times, access times, and modes from the
+             original file.
+
+     -r      递归复制整个目录。
+
+     -v      详细模式。该选项使 scp 和 ssh(1)
+             打印出关于运行情况的调试信息。在进行调试连接、验证和配置问题时，这会很有用的
+
+     -B      用批模式(避免重复询问口令)。
+
+     -q      Disables the progress meter.
+
+     -C      允许压缩。向 ssh(1) 传递 -C 标志以允许压缩。
+
+     -F ssh_config
+             Specifies an alternative per-user configuration file for ssh.
+             This option is directly passed to ssh(1).
+
+     -P port
+             Specifies the port to connect to on the remote host.  Note that
+             this option is written with a capital ‘P’, because -p is already
+             reserved for preserving the times and modes of the file in
+             rcp(1).
+
+     -S program
+             Name of program to use for the encrypted connection.  The program
+             must understand ssh(1) options.
+
+     -o ssh_option
+             Can be used to pass options to ssh in the format used in
+             ssh_config(5).  This is useful for specifying options for which
+             there is no separate scp command-line flag.
+
+     -1      Forces scp to use protocol 1.
+
+     -2      Forces scp to use protocol 2.
+
+     -4      Forces scp to use IPv4 addresses only.
+
+     -6      Forces scp to use IPv6 addresses only.
+
+DIAGNOSTICS
+     scp exits with 0 on success or >0 if an error occurred.
+
+作
+     Timo Rinne <tri@iki.fi> 和 Tatu Ylonen <ylo@cs.hut.fi>
+
+历
+     scp 基于University of California BSD 的 rcp(1) 源代码
+
+参
+     rcp(1), sftp(1), ssh(1), ssh-add(1), ssh-agent(1), ssh-keygen(1),
+     ssh_config(5), sshd(8)
+
+[中
+     meaculpa <meaculpa@21cn.com>
+
+[中
+     2000/12/08
+
+《
+     http://cmpp.linuxforum.net
+
+BSD                           September 25, 1999                           BSD

@@ -1,0 +1,67 @@
+MKTEMP(1)                 BSD General Commands Manual                MKTEMP(1)
+
+NAME
+     mktemp — 产生唯一的临时文件名
+
+总
+     mktemp [-q] [-u] template
+
+描
+     mktemp 根据 给定的 文件名模板, 改变 其中的 一部分, 从而 生成 临时文件名.
+     该文件名 是 唯一的, 可以 让 其他程序 使用. 模板 为 任意 文件名, 后接 六个
+     ‘X’ 例如 /tmp/temp.XXXXXX.  这些 ‘X’ 将被 当前进程号 以及/或者 某个
+     唯一的 字母组合 替代.
+
+     如果 mktemp 成功 产生了 唯一文件名, 就 以 访问模式 0600 (除非 使用了 -u
+     选项) 创建 文件, 并且 在 标准输出 显示 这个 文件名.
+
+     mktemp 用于 让 shell 脚本程序 使用 可靠的 临时文件.  多数 shell 程序 的
+     传统做法 是 程序名 加上 PID 做 后缀, 产生的 文件名 就是 临时文件名.  这种
+     命名策略 容易 预测, 产生的 竞争条件 易于 遭到 攻击.  使用 相同 命名策略
+     的 另一个 方法 是 建立 临时目录, 这种 做法 相对 安全 一些.  它 可以 保证
+     临时文件 不被 破坏, 但是 容易 遭到 简单的 拒绝服务 攻击.  所以 建议 改用
+     mktemp.
+
+选
+     有效选项有:
+
+     -q      出错时 不显示 信息. 用于 禁止 错误信息 输出到 标准错误.
+
+     -u      以 “不安全” 模式 运行.  mktemp 在 退出前 会 删除 临时文件.  它 比
+             mktemp(3) 稍微 好些, 但 仍然 会 引入 竞争条件. 不鼓励 使用 这个
+             选项.
+
+返
+     mktemp 成功时 返回 0, 否则 返回 1.
+
+例
+     下列的 sh(1) 片断 展示了 mktemp 的 简单用法, 如果 无法 获得 可靠的
+     临时文件, 程序 就 退出.
+
+           TMPFILE=`mktemp /tmp/$0.XXXXXX` || exit 1
+           echo "program output" >> $TMPFILE
+
+     照上例, 我们 打算 让 脚本程序 自己 捕获 这个 错误.
+
+           TMPFILE=`mktemp -q /tmp/$0.XXXXXX`
+           if [ $? -ne 0 ]; then
+                   echo "$0: Can't create temp file, exiting..."
+                   exit 1
+           fi
+
+另
+     mkstemp(3), mktemp(3)
+
+历
+     源于 OpenBSD
+
+[中
+     徐明 <xuming@users.sourceforge.net>
+
+[中
+     2003/05/13
+
+《
+     http://cmpp.linuxforum.net
+
+BSD                            November 20, 1996                           BSD

@@ -1,0 +1,102 @@
+SORT(1)                               FSF                              SORT(1)
+
+
+
+NAME(名
+       sort - 对文本文件的行排序
+
+SYNOPSIS(总
+       ../src/sort [OPTION]... [FILE]...
+
+DESCRIPTION(描
+       在这儿添加任何附加的描述信息
+
+       将排序好的所有文件串写到标准输出上.
+
+       +POS1 [-POS2]
+              从关键字POS1开始,到POS2*之前*结束(快过时了)
+              字段数和字符偏移量都从零开始计数(与-k选项比较)
+
+       -b     忽略排序字段或关键字中开头的空格
+
+       -c     检查是否指定文件已经排序好了,不排序.
+
+       -d     在关键字中只考虑[a-zA-Z0-9]字符.
+
+       -f     将关键字中的小写字母折合成大写字母.
+
+       -g     按照通常的数字值顺序作比较,暗含-b
+
+       -i     在关键字中只考虑[\040-\0176]字符.
+
+       -k POS1[,POS2]
+              从关键字POS1开始,*到*POS2结束.
+              字段数和字符偏移量都从1开始计数(与基于零的+POS格式作比较)
+
+       -l     按照当前环境排序.
+
+       -m     合并已经排序好的文件,不排序.
+
+       -M     按(未知的)<`JAN'<...<`DEC'的顺序比较,暗含-b
+
+       -n     按照字符串的数值顺序比较,暗含-b
+
+       -o FILE
+              将结果写入FILE而不是标准输出.
+
+       -r     颠倒比较的结果.
+
+       -s     通过屏蔽最后的再分类比较来稳定排序.
+
+       -t SEP 使用SEP来替代空格的转换non-.
+
+       -T DIRECTORY
+              使用DIRECTORY作为临时文件,而不是$TMPDIR或者/tmp
+
+       -u     如果有-c,则按严格的顺序进行检查;
+              如果有-m,则只输出相等顺序的第一个.
+
+       -z     以0字节结束行,而不是使用换行符,这是为了找到-print0
+
+       --help 显示帮助并退出.
+
+       --version
+              输出版本信息并退出.
+
+       POS为F[.C][OPTS],这里的F指的是字段数,而C为字段中的字符位置,这在-k中是从开
+       始计数的,而在过时的格式中是从零开始的.OPTS可由一个或多个Mbdfinr组成;这有效地屏蔽了
+       对于那个关键字的全局-Mbdfinr设置.如果没有指定关键字,则使用整行作为关键字.如
+       果没有FILE,或者FILE是-,则从标准输入读取.
+
+AUTHOR(作
+       Mike Haertel
+
+REPORTING BUGS(报
+       报告bugs,请发到<bug-textutils@gnu.org>.
+
+COPYRIGHT(版
+       版权所有© 1999 Free Software Foundation, Inc.
+       这是自由软件;参见关于复制条件的源文件.不承担任何责任;更不用说商用性或特殊需求的适
+       应性.
+
+SEE ALSO (另
+       sort     的完整文档是以Texinfo手册的方式维护的.如果在你那儿正确地安装了
+       info 和 sort 程序,命令
+
+              info sort
+
+       应该可以让你访问整个手册.
+
+
+[中
+       riser <boomer@ccidnet.com>
+
+[中
+       2001/08/08
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+GNU textutils 2.0a                1999年12月                           SORT(1)

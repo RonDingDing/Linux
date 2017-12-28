@@ -1,0 +1,49 @@
+NTSYSV(8)                   System Manager's Manual                  NTSYSV(8)
+
+
+
+NAME
+       ntsysv - 用于配置运行级别的简单接口
+
+总
+       ntsysv [--back] [--level <levels>]
+
+描
+       ntsysv            是个用于配置运行级别服务(也可通过           chkconfig
+       来配置)的简单接口。对于缺省情况，它配置当前的运行级别。
+       如果用户需要配置其它的运行级别，可以在命令行上用                 --lev‐
+       els选项，在其后列出所要配置的那些运行级别，且互相之间不加空格。例如，--lev‐
+       els 016 选项编辑运行级别0、1和6。
+
+       如果一项服务是由正被编辑的运行级别中任一级别启动的话，那么它会被考虑在设置的运行级别中启动。
+
+       ntsysv                     窗口通常包含一个取
+       选项的话，会出现一个回
+
+
+返
+       ntsysv
+       在正常情况下返回0，在出错时返回2，且如果用户取消(或撤回)程序则返回1。
+
+
+参
+       chkconfig(8), serviceconf(8)
+
+
+作
+       Erik Troan <ewt@redhat.com>
+
+
+[中
+       meaculpa <meaculpa@21cn.com>
+
+[中
+       2000/12/08
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+
+4th Berkeley Distribution       Mon Oct 13 1997                      NTSYSV(8)

@@ -1,0 +1,118 @@
+SAMBA(7)               Miscellaneous Information Manual               SAMBA(7)
+
+
+
+NAME
+       samba - 为 UNIX 实现的 Windows SMB/CIFS 文件服务器
+
+SYNOPSIS 总
+       Samba
+
+DESCRIPTION 描
+       samba     套件是在    UNIX    系统上实现“服务器信息块”(通常简称    SMB)
+       协议的一组程序。这个协议有时也称为“通用互联网文件系统，  LanManager  或
+       NetBIOS 协议”。
+
+COMPONENTS 组
+       samba                  由几个部件组成。每个部件在一系列的文档中被描述。
+       强烈推荐你阅读这些      samba      本身和你用的那些部件的手册中的文档。
+       如果手册不够清晰，请向这个地址发送补丁或者错误报告：samba-
+       bugs@samba.org
+
+       smbd
+              smbd (8) 守护程序为 SMB 客户，例如 Windows  95/98，Windows  NT，
+              Windows  for  Workgroups  或者是 LanManager 提供文件和打印服务。
+              它的相应配置文件在 smb.conf (5) 中描述。
+
+       nmbd
+              nmbd            (8)             守护程序提供             NetBIOS
+              名字服务和浏览支持。它的相应配置文件在 smb.conf (5) 中描述。
+
+       smbclient
+              smbclient   (1)   程序实现了一种简单的类似   FTP  的客户端应用。
+              对于访问位于其它兼容服务器(如  NT)上的  SMB   共享资源非常有用，
+              同时它也可用于  UNIX  机器向任何  SMB  服务器(如运行  NT  的  PC
+              机)上的打印机 提交打印作业。
+
+       testparm
+              testparm (1) 工具让你可以测试你的 smb.conf (5) 配置文件。
+
+       testprns
+              testprns (1) 工具可以测试你在 printcap 文件中定义好的打印机。
+
+       smbstatus
+              The smbstatus (1) 工具用来列出当前在 smbd (8) 服务器上的联接。
+
+       nmblookup
+              the nmblookup (1) 工具用来向 UNIX 机器查询 NetBIOS 名字。
+
+       make_smbcodepage
+              make_smbcodepage (1)  工具用来为你的  smbd  (8)  服务器建立  SMB
+              代码页定义文件。
+
+       smbpasswd
+              smbpasswd (8) 工具用来在 samba 和 NT 服务器上改变 SMB 加密口令。
+
+AVAILABILITY 可
+       samba    套件由    GNU    公共协议保护。在软件包的    COPYING    文件中
+       包含了一份协议的复本。你可以散布套件的拷贝，但请服从协议条款。
+
+       samba   套件的最新版本可以通过位于   samba.org    的匿名    FTP    上的
+       目录获得，当然也可以在很多互联网上的镜像站点中获得。
+
+       你也能在      comp.protocols.smb      新闻组和     samba     的邮件列表
+       上找到相关的有用信息。在     samba     的      README      文件中给出了
+       加入邮件列表的详细资料。
+
+       如何你能用   WWW  浏览器的话，在  http://samba.org/samba/  将会找到包括
+       samba 邮件列表的问题在内的非常多的有用信息。
+
+VERSION 版
+       这份手册是针对 samba 套件版本 2.0 的。
+
+CONTRIBUTIONS 投
+       如果你想向  samba  计划投稿的话，建议你到  samba@samba.org  加入  samba
+       的邮件列表，详细介绍请看在 http://samba.org/listproc 的网页。
+
+       如果你一个补丁需要提交或者要报告一个错误的话可以直接向           samba-
+       bugs@samba.org            发信。注意，samba            开发组可以会因为
+       这个软件包的迅速流行而需要花费一定的时间来对邮件作出回应。 我们更愿意在
+       diff -u 格式下修补问题。
+
+CREDITS 荣
+       在此提及对计划作出贡献的人实在太多了，但是所有的
+       samba用户都应该感谢他们。要看一份完整的列表，查找
+       ftp://samba.org/pub/samba/alpha/cvs.log          可以获得           CVS
+       修改前提供的一份维护者名单，并在
+       ftp://samba.org/pub/samba/alpha/cvs.log   中找到变更后的内容。CVS    是
+       samba                          开发组开发                         samba
+       时采用的开放源代码控制系统，没有这个系统计划将无法管理。
+
+       另外，一些商业组织现在向                                          samba
+       开发组提供资金和设备上的帮助。详细信息请看网页
+       http://samba.org/samba/samba-thanks.html。
+
+AUTHOR 作
+       samba 软件和相关工具最初由 Andrew Tridgell samba-bugs@samba.org  创建。
+       samba 现在由开发组以类似 Linux 内核开发采用的开源计划方式来发展。
+
+       samba    手册页最初由    Karl    Auer   撰写。它的源码已被转换成   YODL
+       格式(一种极好的开放源代码软件，可以在ftp://ftp.icce.rug.nl/pub/unix/
+       处获得)并已由 Jeremy Allison 更新到 samba2.0 版本。
+
+
+[中
+       meaculpa <meaculpa@21cn.com>
+
+[中
+       2000/12/08
+
+[中
+       http://cmpp.linuxforum.net
+
+
+
+
+
+
+samba 2.0.7                       26 Apr 2000                         SAMBA(7)

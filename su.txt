@@ -1,0 +1,66 @@
+SU(1)                                 FSF                                SU(1)
+
+
+
+NAME(名
+       su - 运行替换用户和组标识的shell
+
+SYNOPSIS(总
+       su [OPTION]... [-] [USER [ARG]...]
+
+DESCRIPTION(描
+       修改有效用户标识和组标识为USER的.
+
+       -, -l, --login
+              使得shell为可登录的shell
+
+       -c, --commmand=COMMAND
+              传递单个COMMAND给-c的shell.
+
+       -f, --fast
+              传递-f给shell(针对csh或tcsh)
+
+       -m, --preserve-environment
+              不重置环境变量
+
+       -p     与-m同
+
+       -s, --shell=SHELL
+              如果/etc/shells允许,运行SHELL.
+
+       --help 显示帮助并退出
+
+       --version
+              输出版本信息并退出
+
+       单一的-意味着-l.如果没有给定USER,则假定为root.
+
+(报
+       报告bugs,请发邮件到bug-sh-utils@gnu.org.
+
+(另
+       以Texinfo手册形式维护的  su  完全文档.如果你正确地安装了  info  和 echo
+       命令
+
+              info su
+
+       应该可以使你访问到整个手册.
+
+COPYRIGHT(版
+       版权所有 © 1999 Free Software Foundation, Inc.
+       这是自由软件;参看复制条件的源文件.不作任何担保,更不用说商品性或者基于特殊目的的适
+       用性.
+
+
+[中
+       riser <boomer@ccidnet.com>
+
+[中
+       2001/08/08
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+GNU sh-utils 2.0                   1999年8月                             SU(1)

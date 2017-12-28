@@ -1,0 +1,75 @@
+FMT(1)                                FSF                               FMT(1)
+
+
+
+NAME
+       fmt - 简易的文本格式优化工具 simple optimal text formatter
+
+总
+       ../src/fmt [-DIGITS] [OPTION]... [FILE]...
+
+描
+       重新  格式化  文件  FILE(s) 中的 每一个 段落, 结果 写到 标准输出.  如果
+       文件 FILE 不存在, 或者 FILE 是 '-', 就从 标准输入 读取 数据.
+
+       长选项 后面的 参数 对于 短选项 形式 也是 必须的.
+
+       -c, --crown-margin
+              保持 前两行 的 缩排形式
+
+       -p, --prefix=STRING
+              只处理 STRING 起始 的 行
+
+       -s, --split-only
+              断裂 长行, 而且 不再 合并 短行
+
+       -t, --tagged-paragraph
+              首行 的 缩排 和 第二行 不同
+
+       -u, --uniform-spacing
+              单词 之间 有 一个 空格, 句子 之间 两个 空格
+
+       -w, --width=NUMBER
+              最大行宽 (缺省为 75 列)
+
+       --help 显示 帮助信息, 然后 退出.
+
+       --version
+              显示 版本信息, 然后 退出.
+
+       在 -wNUMBER 选项 中, 字母 `w' 可以 省略.
+
+作
+       Ross Paterson.
+
+报
+       发现 的 错误 送往 <bug-textutils@gnu.org>.
+
+版
+       Copyright © 1999 Free Software Foundation, Inc.
+       This is free software; see the source for copying conditions.  There is
+       NO  warranty;  not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
+       PURPOSE.
+
+另
+       fmt 的 完整 文档 以 Texinfo 手册 形式 维护. 如果 正确 安装 了  info  和
+       fmt 程序, 用 命令
+
+              info fmt
+
+       能够 访问到 完整 的 手册.
+
+
+[中
+       徐
+
+[中
+       2001/12/17 第一版
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+
+GNU textutils 2.0a               December 1999                          FMT(1)

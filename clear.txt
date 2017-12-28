@@ -1,0 +1,30 @@
+clear(1)                    General Commands Manual                   clear(1)
+
+
+
+NAME(名
+       clear - 清除终端屏幕
+
+SYNOPSIS(总
+       clear
+
+DESCRIPTION(描
+       clear可以在允许的情况下清屏.    它会在环境变量中查找终端的类型,  然后到
+       terminfo数据库中找出清屏的方法.
+
+SEE ALSO(另
+       tput(1), terminfo(5)
+
+
+[中
+       riser <boomer@ccidnet.com>
+
+[中
+       2001/08/08
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+                                                                      clear(1)

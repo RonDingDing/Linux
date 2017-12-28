@@ -1,0 +1,64 @@
+CHFN(1)                     Linux Reference Manual                     CHFN(1)
+
+
+
+NAME
+       chfn - 改 变 你 的 finger 讯 息
+
+总
+       chfn   [ -f full-name ]  [ -o office ]  [ -p office-phone ]  [ -h home-
+       phone ] [ -u ] [ -v ] [ username ]
+
+描
+       chfn 是 用 来 改 变 你 的 finger 讯 息 。 讯 息 是 存 放 在 /etc/passwd
+       档  内 。 可 藉 由 finger 来 显 示 你 的 讯 息 。 Linux finger 命 令 会
+       显 示 四 段 讯 息 ， 这 些 讯 息 均 可 藉 由 chfn 改 变 : 真 实  姓  名
+       ， 工 作 地 点 电 话 ， 及 你 家 的 电 话 。
+
+   命
+       每  一  段  讯 息 均 可 在 命 令 列 上 指 定 。 如 没 有 给 定 讯 息 ，
+       chfn 进 入 交 互 模 式.
+
+   交
+       交互模式中， chfn 会 在 每 一 栏 前 提 示 。 在 提 示 状 态 下 ， 你 就
+       可  输 入 新 的 讯 息 或 是 按 return 而 不 改 变 。 输 入 “none” 则 表
+       示 该 栏 空 白 。
+
+选
+       -f, --full-name
+              真 实 姓 名
+
+       -o, --office
+              办 公 室 号 码
+
+       -p, --office-phone
+              办 公 室 电 话
+
+       -h, --home-phone
+              家 里 的 电 话
+
+       -u, --help
+              秀 出 使 用 说 明 短 讯 。
+
+       -v, --version
+              秀 出 版 本 讯 息 。
+
+参
+       finger(1), passwd(5)
+
+作
+       Salvatore Valente <svalente@mit.edu>
+
+
+[中
+       Best Linux
+
+[中
+       1999
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+chfn                            October 13 1994                        CHFN(1)

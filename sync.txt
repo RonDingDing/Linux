@@ -1,0 +1,50 @@
+SYNC(1)                               FSF                              SYNC(1)
+
+
+
+NAME
+       sync - 清空文件系统缓冲区
+
+总
+       sync [OPTION]
+
+描
+       强迫把更改的块写入磁盘， 并更新超级块。
+
+       --help 显示帮助然后终止。
+
+       --version
+              显示版本信息然后终止。
+
+作
+       Jim Meyering
+
+报
+       把错误报告给 <bug-fileutils@gnu.org>.
+
+版
+       版权所有 © 1999 自由软件基金会
+       这一程序是自由软件；          拷贝条件见源文件。         没有任何担保；
+       甚至没有适合特定目的的隐含的担保。
+
+参
+       sync 的完整的文档是用 Texinfo 手册也写成的。 如果安装了  info  和  sync
+       程序， 用命令
+
+              info sync
+
+       便可以得到完整的手册。
+
+
+[中
+       唐
+
+[中
+       2001/8/30
+
+[中
+       http://cmpp.linuxforum.net
+
+
+
+GNU fileutils 4.0p               January 2000                          SYNC(1)

@@ -1,0 +1,70 @@
+
+RMDIR(1)                   Linux Programmer's Manual                  RMDIR(1)
+
+
+
+NAME
+       rmdir \[uFF0D]删除空目录
+
+总
+       rmdir[options]directory...
+
+       POSIX 选项： [-p]
+
+
+GNU 选
+       [-p] [--ignore-fail-on-non-empty] [--help] [--version] [--]
+
+描
+       rmdir 删除空目录。如果所给出的目录不为空，则报错
+
+POSIX 选
+       -p     如果目录由多个路径名组成，从最后一个路径名开始依次删除，
+              直到所有的路径名都被删完。例如：命令'rmdir -p a/b/c'按  照'rmdir
+              /a/b/c'; 'rmdir a/b'; 'rmdir a'的顺序删除目录。
+
+GNU 选
+       --ignore-fail-on-non-empty
+              通常，rmdir拒绝删除非空目录。
+              这个选项将使命令忽略非空目录而进行删除操作。      （更新见fileu‐
+              tils-4.0）
+
+       -p, --parents
+              同上。
+
+GNU 标
+       --help 在标准输出上显示使用信息并顺利退出。
+
+       --version
+              在标准输出上显示版本信息并顺利退出
+
+       --     终端选项列表。
+
+环
+       变量LANG，LC_ALL，LC_CTYPE，LC_MESSAGES按常规定义。
+
+遵
+       POSIX 1003.2
+
+应
+       命令'rmdir                    foo'将删除空目录foo。要删除一个非空目录，
+       并且包括其下属所有内容，可以使用命令'rm -rfoo'。
+
+注
+       本文出自                     fileutils－4.0，其他版本肯会有微小差别。任
+       何添加或纠错意见请寄：aeb@cwi.nl，程序Bugs           请告知：fileutils-
+       bugs@gnu.ai.mit.edu
+
+
+[中
+       Surran <email>
+
+[中
+       2000/10/19
+
+[中
+       http://cmpp.linuxforum.net
+
+
+
+Linux                            24 July 1993                         RMDIR(1)

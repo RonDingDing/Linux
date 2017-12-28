@@ -1,0 +1,38 @@
+WALL(1)                       Linux User's Manual                      WALL(1)
+
+
+
+NAME
+       wall -- 向所有人的终端发送消息
+
+
+总
+       wall [ message ]
+
+
+描
+       Wall  向 所有 登录的 并且 mesg(1) 权限 设为 yes 的 用户 发送 消息. 消息
+       可以 作为 wall 的 一个 参数, 或者 wall 的 标准 输入. 当  把  终端  作为
+       标准 输入 时, 消息 应该 以 EOF 键 结束 (一般 来说 是 Control-D).
+
+
+参
+       mesg(1).
+
+
+作
+       Miquel van Smoorenburg, miquels@cistron.nl
+
+
+[中
+       唐
+
+[中
+       2001/10/9
+
+[中
+       http://cmpp.linuxforum.net
+
+
+
+                                10 October 1994                        WALL(1)

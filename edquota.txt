@@ -1,0 +1,76 @@
+EDQUOTA(8)                  System Manager's Manual                 EDQUOTA(8)
+
+
+
+NAME(名
+       edquota - 编辑用户配额
+
+SYNOPSIS(总
+       edquota [ -p proto-username ] [ -u | -g ] username...
+
+       edquota [ -u | -g ] -t
+
+DESCRIPTION(描
+       edquota 是一个配额编辑器(如果你想在脚本中设置配额,请参看 setquota(8) ).
+       在命令行上可以指定一个或多个用户或组.对于每个用户或组,会用        ASCII
+       形式创建一个针对该用户或组的当前磁盘配额的临时文件,并对这个文件
+       调用编辑器.随后可以修改配额,添加新的配额,等等.
+       设置某个配额为零表示不施加任何配额限制.
+
+       可以允许用户超出它们的软限制一段宽限期,该宽限期对每个文件系统指定.
+       一旦超出此宽限期,软限制即作为硬限制来执行.
+
+       文件中列出的当前的使用信息是用于提供信息的； 只可以修改硬和软限制.
+
+       一旦离开编辑器,                                                 edquota
+       就读入临时文件并修改二进制配额文件以反映所作的修改.
+
+       调用的编辑器为       vi(1)       除非      VISUAL      或者      EDITOR
+       环境变量指定了其它的编辑器.
+
+       只有超级用户可以编辑配额.(为了在一个文件系统上建立配额,文件系统的
+       root目录下必须包含一个由root所有,叫做   aquota.user   或   aquota.group
+       的文件.  参看 quotaon(8) 以了解详情.)
+
+OPTIONS(选
+       -u     编辑用户配额.这是默认的选项.
+
+       -g     编辑组配额.
+
+       -p     对每个指定的用户/组的原配额加倍.
+              这是用来对一组用户/组初始化配额时常用的方法.
+
+       -t     对每个文件系统编辑软时间限制.
+              sec(onds),min(utes),hour(s),day(s)时间单元都是可识别的.
+              时间限制显示为最大的可能时间单元,以使该值大于或等于任何值.
+
+FILES(相
+       位于文件系统root下的
+                           aquota.user 或 aquota.group 配额文件.
+       /etc/mtab           已挂载的文件系统表
+
+SEE ALSO(另
+       quota(1),  vi(1),  quotactl(2), quotacheck(8), quotaon(8), repquota(8),
+       convertquota(8), setquota(8)
+
+BUGS(漏
+       临时文件的格式是无法预测的.
+
+AUTHOR(作
+       Jan Kara <jack@atrey.karlin.mff.cuni.cz>
+       基于老的 edquota 可能作者:
+       Marco van Wieringen <mvw@planets.elm.net>
+
+
+[中
+       riser <boomer@ccidnet.com>
+
+[中
+       2001.07.09
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+                              2001年3月9日星期五                    EDQUOTA(8)

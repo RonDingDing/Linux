@@ -1,0 +1,49 @@
+SLEEP(1)                              FSF                             SLEEP(1)
+
+
+
+NAME
+       sleep - 延迟指定数量的时间
+
+总
+       sleep [OPTION]... NUMBER[SUFFIX]
+
+描
+       暂停  NUMBER  秒.  SUFFIX  如果  是 s, 指 暂停 的 秒数, m 指 分钟, h 指
+       小时, d 代表 天数.
+
+       --help 显示 帮助信息, 然后 结束
+
+       --version
+              显示 版本信息, 然后 结束
+
+报
+       发现的 bug 送往 <bug-sh-utils@gnu.org>.
+
+另
+       sleep 的 完整文档 以 Texinfo 手册 的 格式 维护. 如果 正确  安装了  info
+       和 sleep 程序, 使用 命令
+
+              info sleep
+
+       能够 访问到 完整 的 手册.
+
+版
+       Copyright © 1999 Free Software Foundation, Inc.
+       This is free software; see the source for copying conditions.  There is
+       NO warranty; not even for MERCHANTABILITY or FITNESS FOR  A  PARTICULAR
+       PURPOSE.
+
+
+[中
+       徐
+
+[中
+       2003/05/13
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+GNU sh-utils 2.0                  August 1999                         SLEEP(1)

@@ -1,0 +1,62 @@
+COMM(1)                               FSF                              COMM(1)
+
+
+
+NAME
+       comm - 逐行比较两个已排序的文件
+
+总
+       ../src/comm [OPTION]... LEFT_FILE RIGHT_FILE
+
+描
+       逐行比较 已排序的 文件 LEFT_FILE 和 RIGHT_FILE.
+
+       -1     屏蔽 左边文件 (LEFT_FILE) 中 不同于 右边文件 的 行(或内容)
+
+       -2     屏蔽 右边文件 (RIGHT_FILE) 中 不同于 左边文件 的 行(或内容)
+
+       -3     屏蔽 两个文件 中 相同 的 行(或内容)
+
+              (译注: 原文为 "不相同的行", 疑有误)
+
+       -l     认为  输入数据  根据  当前的 locale 排了序 (应该 给 sort 提供 -l
+              选项).
+
+       --help 显示 帮助信息, 然后 结束
+
+       --version
+              显示 版本信息, 然后 结束
+
+作
+       Richard Stallman 和 David MacKenzie.
+
+报
+       发现的 bug 送往 <bug-textutils@gnu.org>.
+
+版
+       Copyright © 1999 Free Software Foundation, Inc.
+       This is free software; see the source for copying conditions.  There is
+       NO  warranty;  not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
+       PURPOSE.
+
+另
+       comm 的 完整文档 以 Texinfo 手册 的 格式 维护. 如果 正确 安装了 info 和
+       comm 程序, 使用 命令
+
+              info comm
+
+       能够 访问到 完整 的 手册.
+
+
+[中
+       徐
+
+[中
+       2001/10/19 第一版
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+GNU textutils 2.0a               February 2000                         COMM(1)

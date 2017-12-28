@@ -1,0 +1,86 @@
+quotacheck(8)               System Manager's Manual              quotacheck(8)
+
+
+
+NAME
+       quotacheck - 扫描文件系统,创建,检测并修补配额文件
+
+总
+       quotacheck [ -agucfinvdFR ] filesystem
+
+描
+       quotacheck               察看每一个文件系统,建立当前磁盘使用情况表,并将
+       此表与配额文件中相应内容比较(如果使用了选项            -c             ,
+       这一步将省略).如果发现任何不一致,同时更新配额文件和当前
+       不正确的系统配额拷贝(只有当选择使用配额的文件系统时,才更新
+       后者).在缺省状态下,只选择用户配额.
+
+       quotacheck  要求每个被检测的文件系统在其根目录中都有名为 aquota.user 和
+       aquota.group 的配额文件.如果上述文件不存在, quotacheck 将创建它(们).
+
+       quotacheck 通常在系统启动的时候由位于 /etc/init.d  的初始化脚本在  quo‐
+       taon(8) 建立磁盘配额之前运行.
+
+       强烈建议在运行                                               quotacheck
+       之前关掉配额,卸载文件系统或者将其设为只读模式,否则会出现 配额损坏.
+       quotacheck   在开始扫描之前,会尝试以只读模式装配各文件系统.    当扫描完
+       成时,它会以读写模式重新装配文件系统.你可以用-F选项使         quotacheck
+       在尝试以只读模式重新装配文件系统失败之后继续运行.
+
+       完成扫描所需要的时间与磁盘的使用程度成正比.
+
+选
+       -v     quotacheck 在运行时报告其每一项操作.在缺省状态下不报告.
+
+       -d     进入调试状态.这会产生许多用于调试程序的信息.输出的信息
+              非常详尽,而扫描速度会减慢.
+
+       -a     如果用它取代任何文件系统的名字,      quotacheck     将检测所有在
+              /etc/mtab       中列为可读写的文件系统的配额.在缺省状态下,只有在
+              /etc/mtab 中被列为配额的文件系统才会被检测.
+
+       -u     只检测在                                               /etc/mtab
+              列出或指定的文件系统中的用户配额.这是缺省状态下采取的行动.
+
+       -g     只检测在 /etc/mtab 中列出或制定的文件系统中的组配额
+
+       -c     不读已经存在的配额文件.执行一次新的扫描,并且把结果保存到磁盘上.
+
+       -f     强制检测所有使用配额的文件系统.不推荐使用该选项,因为其产生的
+              配额文件可能会不同步.
+
+       -F     强制在可读写状态下检测文件系统.当使用该选项时,请先确定在对文件
+              系统进行扫描的时候,没有进程需要对该文件系统写入数据.
+
+       -R     当与 -a 一起使用时,检测除根(root)文件系统外的其他所有文件系统.
+
+       -i     交互模式.在缺省状态下,                                quotacheck
+              在发现错误后即退出.在交互模式下,用户会被问取建议.  参考选项 -n.
+
+       -n     有时候对同一个ID会找到多个结果.    通常遇到这种情况   quotacheck
+              就终止运行.该选项强制使用第一个结果(该选项在交互模式下同样有效).
+
+注
+       quotacheck              应该只能由超级用户执行.因为未授权用户通常不能读
+       一个给定文件系统上的所有目录.
+
+参
+       quota(1),   quotactl(2),   fstab(5),   quotaon(8),   repquota(8),  con‐
+       vertquota(8), setquota(8), edquota(8),  fsck(8),  efsck(8),  e2fsck(8),
+       xfsck(8)
+
+文
+       aquota.user 与用户配额位于文件系统根目录
+       aquota.group 与组配额位于文件系统根目录
+       /etc/mtab 是已装配文件系统表.
+
+
+作
+       Jan Kara <jack@atrey.karlin.mff.cuni.cz>
+       基于旧版 quotacheck 作者:
+       Edvard Tuinder <ed@elm.net>
+       Marco van Wieringen <mvw@planets.elm.net>
+
+
+
+                                Mon Jul 17 2000                  quotacheck(8)

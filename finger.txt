@@ -1,0 +1,74 @@
+FINGER(1)                 BSD General Commands Manual                FINGER(1)
+
+NAME
+     finger — 用户信息查找程序
+
+总
+     finger [-lmsp] [user ...] [user@host ...]
+
+描
+     The finger 显示关于系统用户的信息
+
+     参数:
+
+     -s    Finger 显示用户的登录名, 真名, 终端名 以及写
+           状态(如果写被禁止，在终端名后显示一个``*''),
+           空闲时间,登录时间,办公地点和电话等。
+
+           登录时间显示为月,天,小时和分钟，如果是超过6个月以前，则
+           显示年份，而不是小时和分钟。
+
+           不明设备以及不存在的空闲时间和登录时间显示为一个星号。
+
+     -l    产生一个多行显示来描述信息 -s
+           关于用户家目录，家庭电话，登录脚本，邮件状态和文件的内容 “.plan” 和
+           “.project” 和 “.forward” 从用户的家目录.
+
+           11位数字电话号码显示为 ``+N-NNN-NNN-NNNN''.
+           十位或七位数字可以显示为它的子集。 五位数字电话号码显示为 ``xN-
+           NNNN''.  四位数字电话号码显示为 ``xNNNN''.
+
+           如果对设备写被禁止, 短语 ``(messages off)''
+           被附加在有此设备的行后边.  每一个用户有一个条目，用 -l 选项;
+           如果一个用户多次登录, 终端信息 按每次登录重复显示。.
+
+           如果什么邮件都没有，邮件信息显示为``No Mail.'', 如果当新邮件来后，
+           已经查看过信箱，为``Mail last read DDD MMM ## HH:MM YYYY (TZ)''
+           如果有新邮件，则为 ``New mail received ...'',``  Unread since ...''
+
+     -p    防止 finger -l 选项 显示 “.plan”
+            和 “.project” 文件的内容。
+
+     -m    防止 user 名字的匹配.  User 通常是一个登录名; 可是,
+           也会对用户的真实名字 进行匹配, 除非提供 -m 选项.  所有由 finger
+           进行的名字匹配是区分大小写的
+
+     不指定 finger 的选项 如果提供操作者的话， 缺省设为 -l 输出风格，否则为 -s
+     风格.  注意在两种格式中，如果信息不足， 都有一些域可能丢失,
+
+     如果没有指定参数 finger 会为当前登录的每个用户打印一个条目.
+
+     Finger 可以用来查看远地机器上的用户信息 格式是指定 user 为 “user@host”,
+     或 “@host”, 前者的缺省输出为 -l 风格, 后者的缺省输出为 -s 风格.  -l
+     是唯一的向远地机器传递的选项.
+
+     如果标准输出是一个socket finger
+     会在每个换行符前插入回车符。这是为了处理由以下调用的远程finger请求
+     fingerd(8).
+
+参
+     chfn(1), passwd(1), w(1), who(1)
+
+历
+     finger 命令出现在 3.0BSD
+
+[中
+     hunter77 <tzb@kali.com.cn>
+
+[中
+     2001/04/01
+
+《
+     http://cmpp.linuxforum.net
+
+Linux NetKit (0.16)             August 15, 1999            Linux NetKit (0.16)

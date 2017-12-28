@@ -1,0 +1,71 @@
+ID(1)                                 FSF                                ID(1)
+
+
+
+NAME
+       id - 显示真实和有效的 UID 和 GID
+
+
+总
+       id [OPTION]... [USERNAME]
+
+
+描
+       显示 USERNAME 或者 当前 用户 的 信息.
+
+       -a     忽略, 同 其它 版本 兼容
+
+       -g, --group
+              只 显示 组 ID
+
+       -G, --groups
+              只 显示 附加组
+
+       -n, --name
+              对于 -ugG 显示 名字 而 不是 数值
+
+       -r, --real
+              对于 -ugG 显示 真实 ID 而 不是 有效 ID
+
+       -u, --user
+              只 显示 用户 ID
+
+       --help 显示 帮助 并且 退出
+
+       --version
+              显示 版本 信息 并且 退出
+
+       如果 没有 OPTION, 显示 指定 指定 的 有用 信息.
+
+
+报
+       把 错误 报告 给 <bug-sh-utils@gnu.org>.
+
+
+参
+       id  的  完整 的 文档 是 以 Texinfo 手册页 维护 的. 如果 info 和 id 程序
+       被 正确 的 安装 在 你的 机子 上, 用
+
+              info id
+
+       命令 查看 完整 的 手册页.
+
+
+版
+       版权所有 © 1999 自由软件基金会
+       这一程序是自由软件;          拷贝条件见源文件.            没有任何担保;
+       甚至没有适合特定目的的隐含的担保.
+
+
+[中
+       唐
+
+[中
+       2001/9/20
+
+[中
+       http://cmpp.linuxforum.net
+
+
+
+GNU sh-utils 2.0                  August 1999                            ID(1)

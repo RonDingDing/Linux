@@ -1,0 +1,62 @@
+FOLD(1)                               FSF                              FOLD(1)
+
+
+
+NAME
+       fold - 折叠输入行, 使其适合指定的宽度
+
+总
+       ../src/fold [OPTION]... [FILE]...
+
+描
+       折叠(wrap)  每个  文件  FILE  中 的 输入行 (缺省为 标准输入), 结果 写到
+       标准输出.
+
+       -b, --bytes
+              计数 字节 而不是 列 (column)
+
+       -s, --spaces
+              在 空格 处 断开
+
+       -w, --width=WIDTH
+              使用 WIDTH 取代 80 列
+
+       --help 显示 帮助信息, 然后 结束
+
+       --version
+              显示 版本信息, 然后 结束
+
+作
+       David MacKenzie.
+
+报
+       发现的 bug 送往 <bug-textutils@gnu.org>.
+
+版
+       Copyright © 1999 Free Software Foundation, Inc.
+       This is free software; see the source for copying conditions.  There is
+       NO  warranty;  not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
+       PURPOSE.
+
+另
+       fold 的 完整文档 以 Texinfo 手册 的 格式 维护. 如果 正确 安装了 info 和
+       fold 程序, 使用 命令
+
+              info fold
+
+       能够 访问到 完整 的 手册.
+
+
+[中
+       徐
+
+[中
+       2001/12/17 第一版
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+
+GNU textutils 2.0a               December 1999                         FOLD(1)

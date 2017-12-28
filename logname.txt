@@ -1,0 +1,54 @@
+LOGNAME(1)                            FSF                           LOGNAME(1)
+
+
+
+NAME
+       logname - 显示用户登录名
+
+
+总
+       logname [OPTION]...
+
+
+描
+       显示 当前用户 的 名字.
+
+       --help 显示 帮助信息, 然后 结束.
+
+       --version
+              显示 版本信息, 然后 结束.
+
+
+报
+       发现 的 错误 送往 <bug-sh-utils@gnu.org>.
+
+
+另
+       logname  的  完整  文档 以 Texinfo 手册 的 形式 维护. 如果 正确 安装 了
+       info 和 logname 程序, 使用 命令
+
+              info logname
+
+       能够 访问到 完整 的 手册.
+
+
+版
+       Copyright © 1999 Free Software Foundation, Inc.
+       This is free software; see the source for copying conditions.  There is
+       NO  warranty;  not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
+       PURPOSE.
+
+
+
+[中
+       徐
+
+[中
+       2003/05/13
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+GNU sh-utils 2.0                  August 1999                       LOGNAME(1)

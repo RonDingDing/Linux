@@ -1,0 +1,72 @@
+MKDIR(1)                    General Commands Manual                   MKDIR(1)
+
+
+
+NAME
+       mkdir -建立目录
+
+总
+       mkdir [选项] 目录...
+
+       POSIX 选项： [-p] [-m mode]
+
+GNU 选
+       [-p] [-m mode] [--verbose] [--help] [--version] [--]
+
+描
+       mkdir                                            用指定的名字建立目录。
+       缺省时，新建立的目录模式为0777，即不加保护地对所有人
+       都可读、可写、可执行。
+
+选
+       -m mode, --mode=mode
+              为新建立的目录设定模式，就象应用命令chmod一样，以后仍
+              然使用缺省模式建立新目录。
+
+       -p, --parents
+              为所给出的目录建立丢失了的父目录。所建立的父目录的模式
+              相当于用命令    umask   进行了   'u+wx'   的设置。忽略参数对已存
+              在的目录的覆盖。（例如：已存在目录/a，当用到命令'mkdir       /a'
+              时报错，而'mkdir -p /a'则不会。）
+
+       --verbose
+              打印出新建立的每一个目录名。与--parents联合使用最有效。
+
+GNU 标
+       -Z     将目标文件 SELinux 安全上下文设置为默认类型
+
+       --context[=CTX]
+              类似  -Z，或者如果给定了上下文（CTX）那么将  SELinux  或者 SMACK
+              安全上下文设置为给定值
+
+       -help  在标准输出上显示使用信息并顺利退出。
+
+       -version
+              在标准输出上显示版本信息并顺利退出
+
+       --     终端选项列表.
+
+环
+       变量LANG，LC_ALL，LC_CTYPE，LC_MESSAGES按常规定义。
+
+遵
+       POSIX 1003.2
+
+注
+       本文出自                     fileutils－4.0，其他版本肯会有微小差别。任
+       何添加或纠错意见请寄：aeb@cwi.nl，程序Bugs请告知：           fileutils-
+       bugs@gnu.ai.mit.edu
+
+
+[中
+       Surran <email>
+
+[中
+       2000/10/19
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+GNU fileutils 4.0                November 1998                        MKDIR(1)

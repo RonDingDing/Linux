@@ -1,0 +1,78 @@
+GROUPDEL(8)                      系统管理命令                      GROUPDEL(8)
+
+
+
+名
+       groupdel - 删除一个组
+
+大
+       groupdel [选项] GROUP
+
+描
+       userdel 修改系统账户文件，删除与 GROUP
+       相关的所有项目。给出的组名必须存在。
+
+选
+       groupdel 命令可以接受的选项有：
+
+       -h, --help
+           现实帮助信息并退出。
+
+       -R, --rootCHROOT_DIR
+           Apply changes in the CHROOT_DIR directory and use the configuration
+           files from the CHROOT_DIR directory.
+
+CAVEATS
+       您不能移除现有用户的主组。在移除此组之前，必须先移除此用户。
+
+       您需要手动检查所有文件系统，以确保没有遗留的属于此组的文件。
+
+配
+       在 /etc/login.defs 中有如下配置变量，可以用来更改此工具的行为：
+
+       MAX_MEMBERS_PER_GROUP (number)
+           每个组条目的最大成员数。达到最大值时，在 /etc/group
+           开始一个新条目(行)(使用同样的名称，同样的密码，同样的 GID)。
+
+           默认值是 0，意味着组中的成员数没有限制。
+
+           此功能(分割组)允许限制组文件中的行长度。这对于确保 NIS 组的行比长于
+           1024 字符。
+
+           如果要强制这个限制，可以使用 25。
+
+           注意：分割组可能不受所有工具的支持(甚至在 Shadow
+           工具集中)。您不应该使用这个变量，除非真的需要。
+
+文
+       /etc/group
+           组账户信息。
+
+       /etc/gshadow
+           安全组账户信息。
+
+退
+       groupdel 命令以如下值退出：
+
+       0
+           成功
+
+       2
+           无效的命令语法
+
+       6
+           指定的组不存在
+
+       8
+           不能移除用户的主组
+
+       10
+           无法更新组文件
+
+参
+       chfn(1), chsh(1), passwd(1), gpasswd(8), groupadd(8), groupmod(8),
+       useradd(8), userdel(8), usermod(8).
+
+
+
+shadow-utils 4.1.5.1              2016-11-05                       GROUPDEL(8)

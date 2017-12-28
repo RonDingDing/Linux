@@ -1,0 +1,107 @@
+RDEV(8)                    Linux Programmer's Manual                   RDEV(8)
+
+
+
+NAME
+       rdev - 查询/设置内核映像文件的根设备，RAM 磁盘大小或视频模式
+
+总
+       rdev [ -rvh ] [ -o offset ] [ image [ value [ offset ] ] ]
+       rdev [ -o offset ] [ image [ root_device [ offset ] ] ]
+       ramsize [ -o offset ] [ image [ size [ offset ] ] ]
+       vidmode [ -o offset ] [ image [ mode [ offset ] ] ]
+       rootflags [ -o offset ] [ image [ flags [ offset ] ] ]
+
+描
+       不带任何参数的      rdev      命令将输出当前根文件系统的      /etc/mtab
+       文件行。不带任何参数的 ramsize, vidmode, 和 rootflags 将显示帮助信息。
+
+       在一个                 i386                 上的                  linux
+       可引导内核映像文件中，有几对字节用来指定根设备，视频模式和          RAM
+       磁盘的大小。这些字节对，在默认情况下起始在内核映像的偏移量504  (十进制)
+       处。
+
+               498 Root flags (根标志)
+              (500 和 502 保留)
+               504 RAM Disk Size RAM (磁盘大小)
+               506 VGA Mode (VGA 模式)
+               508 Root Device (根设备)
+              (510 Boot Signature (启动标记))
+
+       rdev 可以改变这些值。
+
+       典型的 image 参数的值是一个可启动的 linux 内核映像，可能是
+
+              /vmlinux
+              /vmunix
+              /boot/bzImage-2.4.0
+              /dev/fd0
+              /dev/fd1
+
+       当使用 rdev 命令时， root_device 参数是类似如下所示的值：
+
+              /dev/hda1
+              /dev/hdf13
+              /dev/sda2
+              /dev/sdc4
+              /dev/ida/c0d0p1
+
+       也可以通过使用一个逗号     (comma)    分隔的十进制整数对    major,minor
+       来指定这个设备。
+
+       对于 ramsize 命令， size 参数指定了 RAM 磁盘的大小，以千字节为单位。
+
+       对于     rootflags      命令，      flags      参数包含在挂载      root
+       文件系统时额外的信息。当前这些标志的唯一作用是当                  flags
+       非零时，强制内核以只读模式来挂载 root 文件系统。
+
+       对于 vidmode 命令， mode 参数指定了视频模式。
+
+              -3 = Prompt (提示)
+              -2 = Extended VGA (扩展的VGA)
+              -1 = Normal VGA (普通VGA)
+               0 = as if "0" was pressed at the prompt (假设在提示时按下了"0")
+               1 = as if "1" was pressed at the prompt
+               2 = as if "2" was pressed at the prompt
+               n = as if "n" was pressed at the prompt
+
+       如果没有指定 value ，将检测 image 来得到当前的设置。
+
+选
+       -r     使得 rdev 作为 ramsize 运行。
+
+       -R     使得 rdev 作为 rootflags 运行。
+
+       -v     使得 rdev 作为 vidmode 运行。
+
+       -h     提供帮助。
+
+BUGS
+       rdev     工具，如果不是用做查找当前根设备的名称，那么就是一种古老的破解
+       (hack)     ，依靠对内核的一个特定     (magic)     位移以特殊    (magic)
+       数字进行修改来工作。它在                                           i386
+       之外的体系中不能工作。不鼓励使用它。使用一个启动管理器，例如 SysLinux ,
+       LILO 或者 grub 来替代它。
+
+历
+       偏移 502 从前是交换设备的设备号 (在 linux 0.12 中)，运行 "rdev -s" 或者
+       "swapdev"            将设置它。但是，从            linux           0.95
+       起，这个常量不再使用，交换设备是以 swapon() 系统调用来指定的。
+
+作
+       原作者是 Werner Almesberger (almesber@nessie.cs.id.ethz.ch)；
+       Peter MacDonald (pmacdona@sanjuan.UVic.CA) 进行了修改；
+       Stephen Tweedie (sct@dcs.ed.ac.uk) 加入了 rootflags 支持。
+
+[中
+       所
+
+[中
+       Nov 21 2000
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+Linux 0.99                     20 November 1993                        RDEV(8)

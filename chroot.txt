@@ -1,0 +1,55 @@
+CHROOT(1)                             FSF                            CHROOT(1)
+
+
+
+NAME
+       chroot - 以 特定 根 目录 运行 命令 或者 交互式 shell
+
+
+总
+       chroot [OPTION] NEWROOT [COMMAND...]
+       chroot OPTION
+
+
+描
+       以 NEWROOT 为 根 目录 运行 COMMAND.
+
+       --help 显示 帮助 并且 退出
+
+       --version
+              显示 版本 信息 并且 退出
+
+       如果 没有 指定 命令, 运行 ``${SHELL} -i'' (默认: /bin/sh).
+
+
+报
+       把 错误 报告 给 <bug-sh-utils@gnu.org>.
+
+
+参
+       chroot  的  完整  的  文档  是  以 Texinfo 手册页 维护 的. 如果 info 和
+       chroot 程序 被 正确 的 安装 在 你的 机子 上, 用
+
+              info chroot
+
+       命令 查看 完整 的 手册页.
+
+
+版
+       版权所有 © 1999 自由软件基金会
+       这一程序是自由软件;          拷贝条件见源文件.            没有任何担保;
+       甚至没有适合特定目的的隐含的担保.
+
+
+[中
+       唐
+
+[中
+       2001/9/20
+
+[中
+       http://cmpp.linuxforum.net
+
+
+
+GNU sh-utils 2.0                  August 1999                        CHROOT(1)

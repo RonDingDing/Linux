@@ -1,0 +1,57 @@
+quota(1)                    General Commands Manual                   quota(1)
+
+
+
+NAME
+       quota - 显示磁盘的使用和限额
+
+总
+       quota [ -guv | q ]
+       quota [ -uv | q ] user
+       quota [ -gv | q ] group
+
+描
+       Quota 显示 用户的 磁盘 使用情况 和 限额. 缺省功能 只显示 用户限额.
+
+       -g     显示 用户所在组 的 组限额. 可选项(optional).
+
+       -u     和 缺省情况 一样.
+
+       -v     显示 文件系统上 的 限额, 即使 没有 占用 空间.
+
+       -q     简洁的 信息, 只 显示 超出 限额 的 文件系统.
+
+       同时指定 -g 和 -u 既显示 用户限额, 也显示 该用户 的 组限额.
+
+       只有  超级用户  可以  使用  -u 选项 和 user 参数 察看 其他用户 的 限额.
+       普通用户 可以 使用 -g 选项 和 group 参数 察看 用户所在组 的 限额.
+
+       -q 选项 优先于 -v 选项.
+
+       Quota 报告 /etc/fstab 中 列出的 全部 文件系统 上 的 限额. 如果 文件系统
+       是 挂载的 NFS, Quota 调用 服务器 上的 rpc.rquotad, 以便 获取 相关信息.
+
+       如果 quota 返回 非零值, 表明 在 某些 文件系统 上 超出了 限额.
+
+文
+       quota.user 位于 文件系统 根目录, 存放 用户限额
+       quota.group 位于 文件系统 根目录, 存放 组限额
+       /etc/fstab 用于 查找 文件系统 的 名称和位置
+
+另
+       quotactl  (2),  fstab  (5),  edquota  (8), quotacheck (8), quotaon (8),
+       repquota (8)
+
+
+[中
+       徐
+
+[中
+       2003/05/13
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+                                Tue Jun 8 1993                        quota(1)

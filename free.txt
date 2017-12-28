@@ -1,0 +1,63 @@
+FREE(1)                       Linux User's Manual                      FREE(1)
+
+
+
+NAME
+       free - 显示系统中已用和未用的内存空间总和.
+
+
+总
+       free [-b | -k | -m] [-o] [-s delay ] [-t] [-V]
+
+
+描
+       free 显示 系统中 已用和未用的 物理内存和交换内存, 共享内存和 内核使用的
+       缓冲区的 总和.
+
+
+选
+       -b 选项 以字节为单位 显示 内存总和; -k 选项 (缺省的) 以 KB 为单位 显示;
+       -m 选项 以 MB 为单位.
+
+
+       -t 选项 显示 一个 总计行.
+
+
+       -o  选项  禁止  "buffer  adjusted" 行的显示. 除非 指定 free 从 (相应的)
+       已用/未用的 内存 减去/加上 缓冲区内存.
+
+
+       -s 使 free 以 delay  秒为间隔,  连续抽样显示.  delay  可以设置成浮点数,
+       它用 usleep(3) 做 微秒级 延迟.
+
+
+       -V 显示版本信息.
+
+
+文
+       /proc/meminfo-- 内存信息
+
+
+另
+       ps(1), top(1)
+
+
+作
+       由 Brian Edmonds 编写
+
+       Bug 报告寄给 <procps-bugs@redhat.com>
+
+
+[中
+       徐
+
+[中
+       2001/12/17 第一版
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+
+Cohesive Systems                 20 Mar 1993                           FREE(1)

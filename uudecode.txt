@@ -1,0 +1,76 @@
+uuencode(1)                 General Commands Manual                uuencode(1)
+
+
+
+NAME
+       uuencode - 对二进制文件编码
+
+       uudecode - 解码由 uuencode 创建的文件
+
+
+总
+       uuencode [-m] [ file ] name
+
+       uudecode [-o outfile] [ file ]...
+
+
+描
+       Uuencode  和 uudecode 用于 在 某些 只能 传输 简单 ASCII 数据 的 信道 上
+       传送 二进制文件.
+
+       Uuencode 读入 文件 file (缺省为 标准输入)的 内容, 编码后 的  文件  送往
+       标准输出.   编码  只使用  可显示  ASCII  字符,  同时 将 文件访问模式 和
+       目标文件名 name 存放在 目标文件 中, 供 uudecode 使用.  如果  目标文件名
+       name  是  标准输出  /dev/stdout , Uuencode 将把 生成结果 送往 标准输出.
+       缺省标准 使用 UU 编码格式.  如果 在 命令行上 指定了 -m  选项,  Uuencode
+       就 改用 base64 编码格式.
+
+
+       Uudecode 把 uuencode 编码过的 文件 file (缺省是 标准输入) 解码成 原来的
+       形式. 产生的 文件 命名为 name (如果 使用了 -o 选项, 文件名 就是 outfile
+       ),  拥有  原来的 文件访问模式, 但会 去除 setuid 和 可执行 位. 如果 out‐
+       file 或 name 是 /dev/stdout,  Uudecode  将把  生成结果  送往  标准输出.
+       Uudecode  忽略  任何(多余的) 前后行. 它 能够 自动 识别 编码格式, 并采用
+       相应的 解码方案.
+
+
+例
+       下面的 例子 显示了 打包 一棵 源文件树, 压缩, UU 编码, 然后 寄给  另一个
+       系统  的  用户.   在 目的地 运行 uudecode 时 将 产生 ``src_tree.tar.Z''
+       文件, 展开 这个 文件 就可以 还原成 原来的 文件树.
+
+              tar cf - src_tree | compress |
+              uuencode src_tree.tar.Z | mail sys1!sys2!user
+
+另
+       compress(1), mail(1), uucp(1), uuencode(5)
+
+标
+       本实现遵循 P1003.2b/D11.
+
+BUGS
+       如果 使用了 -o 选项 的 同时 要求 解码 一个以上 的 文件 file , 或者 这些
+       已经  编码的  文件  中, 出现了 相同的 文件名 name , 其结果 可能 不是 你
+       想要的.
+
+
+       用 UU 格式 编码  的  文件  增大  37%,  用  base64  格式  (3编码成4字节,
+       加上控制信息) 编码 的 文件 增大 35%
+
+
+历
+       uuencode 命令始于 BSD 4.0.
+
+
+[中
+       徐
+
+[中
+       2003/05/13
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+                                                                   uuencode(1)

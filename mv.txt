@@ -1,0 +1,95 @@
+MV(1)                           自由软件基金会                           MV(1)
+
+
+
+NAME
+       mv - 移动 (改名) 文件
+
+摘
+       mv [选项]... 源文件 目标文件
+       mv [选项]... 源文件... 目录
+       mv [选项]... --target-directory=DIRECTORY SOURCE...
+
+描
+       改“源文件”名到“目标文件”名, 或移动“源文件”(可以不只一 个)到一个“目录”。
+
+       --backup[=CONTROL]
+              为现有的每一个目标文件作一个备份
+
+       -b     和--backup一样但是不接受参数
+
+       -f, --force
+              覆盖前永不提示
+
+       -i, --interactive
+              覆盖前提示
+
+       --strip-trailing-slashes
+              删除任何“源文件”参数后面跟随的斜杠
+
+       -S, --suffix=SUFFIX
+              省略一般的备份后缀
+
+       --target-directory=DIRECTORY
+              移动全部“源文件”参数到“目录”中
+
+       -u, --update
+              只移动更老的或者标记新的非目录
+
+       -v, --verbose
+              说明完成了什么
+
+       --help 显示帮助且退出程序
+
+       --version
+              输出版本信息且退出程序
+
+       这是备份后缀   `~',   除非设定   --suffix   或   SIMPLE_BACKUP_SUFFIX。
+       这个版本管理方法可以选择通过 --backup 选项或通过
+        VERSION_CONTROL 环境变量。这些值是：
+
+       none, off
+              永不做备份 (即使用 --backup)
+
+       numbered, t
+              做备份编号
+
+       existing, nil
+              编号，如果编号备份存在，用其它的简单方法
+
+       simple, never
+              总是做简单备份
+
+作
+       写作 by Mike Parker，David MacKenzie和Jim Meyering.
+
+报
+       回复错误到<bug-fileutils@gnu.org>。
+
+版
+       版权 © 2001 自由软件基金会
+       这是自由软件；              可以复制原代码。               这没有保证；
+       甚至不能适应一个特别的任务。
+
+相
+       关于    mv    的全部文档维护是    Texinfo   指南。如果   info   和   mv
+       程序都已经装在你的机器上，可以用命令
+
+              info mv
+
+       启动并读这个指南。
+
+
+
+[中
+       wide288 <email>
+
+[中
+       2003/11/22
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+mv (fileutils) 4.1                March 2002                             MV(1)

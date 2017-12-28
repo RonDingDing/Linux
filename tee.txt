@@ -1,0 +1,59 @@
+TEE(1)                                FSF                               TEE(1)
+
+
+
+NAME
+       tee - 从标准输入写往文件和标准输出
+
+
+总
+       tee [OPTION]... [FILE]...
+
+
+描
+       把 标准输入 的 数据 复制到 每一个 文件 FILE, 同时 送往 标准输出.
+
+       -a, --append
+              追加到 给出的 文件, 而不是 覆盖
+
+       -i, --ignore-interrupts
+              忽略 中断信号
+
+       --help 显示 帮助信息, 然后 结束
+
+       --version
+              显示 版本信息, 然后 结束
+
+
+报
+       发现的 bug 送往 <bug-sh-utils@gnu.org>.
+
+
+另
+       tee  的 完整文档 以 Texinfo 手册 的 格式 维护. 如果 正确 安装了 info 和
+       tee 程序, 使用 命令
+
+              info tee
+
+       能够 访问到 完整 的 手册.
+
+
+版
+       Copyright © 1999 Free Software Foundation, Inc.
+       This is free software; see the source for copying conditions.  There is
+       NO  warranty;  not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
+       PURPOSE.
+
+
+[中
+       徐
+
+[中
+       2003/05/13
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+GNU sh-utils 2.0                  August 1999                           TEE(1)

@@ -1,0 +1,121 @@
+MORE(1)                   BSD General Commands Manual                  MORE(1)
+
+NAME
+     more — 在显示器上阅读文件的过滤器
+
+总
+     more [-dlfpcsu] [-num] [+/ pattern] [+ linenum] [file ...]
+
+描
+     More 是 一个 过滤器, 用于 分页 显示 (一次一屏) 文本. 这个 版本 非常 基本.
+     用户 应该 知道 less(1) 提供了 more(1) 的 模拟, 并且 做了 增强.
+
+选
+     下面 介绍 命令行选项. 选项 可以 从 环境变量 MORE 中获取 (要 确保 它们 以
+     短横线 开头 (``-'')), 但是 命令行选项 能够 覆盖 它们.
+
+     -num  这个选项指定屏幕的行数 (以整数表示).
+
+     -d    让 more 给 用户 显示 提示信息 "[Press space to continue, 'q' to
+           quit.]", 当 用户 按下 其他键 时, 显示 "[Press 'h' for instruc‐
+           tions.]", 而不是 扬声器 鸣笛.
+
+     -l    More 在 通常情况下 把 ^L (form feed) 当做 特殊字符, 遇到 这个字符
+           就会 暂停.  -l 选项 可以 阻止 这种特性.
+
+     -f    使 more 计数 逻辑行, 而不是 屏幕行 (就是说, 长行 不会 断到 下一行).
+
+     -p    不卷屏, 而是 清除 整个屏幕, 然后 显示 文本.
+
+     -c    不卷屏, 而是 从 每一屏的 顶部 开始 显示 文本, 每 显示完 一行, 就
+           清除 这一行的 剩余部分.
+
+     -s    把 重复的空行 压缩成 一个 空行.
+
+     -u    防止下划线.
+
+     +/    在 显示 每个文件 前, 搜索 +/ 选项 指定的 文本串.
+
+     +num  从行号 num 开始显示.
+
+命
+     more 的交互命令基于 vi(1).  有些命令 以 一个 十进制数字 开始, 在
+     下面的描述 里 称之为 k. 后面的 描述中, ^X 指 control-X.
+
+     h or ?      帮助: 显示 这些 命令 的 摘要. 你 如果 忘掉 所有 其他的命令,
+                 请记住这个.
+
+     SPACE       显示 接下来的 k 行文本. 缺省值 是 当前的屏幕大小.
+
+     z           显示 接下来的 k 行文本. 缺省值 是 当前的屏幕大小. 参数 成为
+                 新的缺省值.
+
+     RETURN      显示 接下来的 k 行文本. 缺省值 是 1. 参数 成为 新的缺省值.
+
+     d or ^D     卷屏 k 行. 缺省值 是 当前的 卷屏大小, 初始化为 11. 参数 成为
+                 新的缺省值.
+
+     q 或 Q 或 INTERRUPT
+                 退出.
+
+     s           向前跳过 k 行文本. 缺省值 是 1.
+
+     f           向前跳过 k 屏文本. 缺省值 是 1.
+
+     b or ^B     向后跳回 k 屏文本. 缺省值 是 1.
+
+     '           跳到 上一次 搜索 开始 的 地方.
+
+     =           显示当前行号.
+
+     /pattern    搜索 第 k 个 符合 正则表达式的 文本串. 缺省值 是 1.
+
+     n           搜索 最后 第 k 个 符合 正则表达式的 文本串. 缺省值 是 1.
+
+     !<cmd> or :!<cmd>
+                 在子 shell 中执行 <cmd>.
+
+     v           启动 /usr/bin/vi, 指向 当前行.
+
+     ^L          刷新屏幕.
+
+     :n          跳到 后面 第 k 个 文件.  缺省值 是 1.
+
+     :p          跳到 前面 第 k 个 文件.  缺省值 是 1.
+
+     :f          显示 当前文件名 和 行号.
+
+     .           重复上次命令.
+
+环
+     More 利用 下面的 环境变量 (如果 它们 存在):
+
+     MORE        这个变量 设置 你 喜欢的 more 选项.
+
+     SHELL       当前使用的 shell (一般说来 就是 登录 shell).
+
+     TERM        指定 终端类型, more 用它来 获取 操作屏幕 所需的 终端特性.
+
+另
+     vi(1) less(1)
+
+作
+     Eric Shienbrood, UC Berkeley
+     Modified by Geoff Peck, UCB to add underlining, single spacing
+     Modified by John Foderaro, UCB to add -c and MORE environment variable
+
+历
+     more 命令 出现在 3.0BSD.  本手册页 描述了 more version 5.19 (Berkeley
+     6/29/88), 目前 它 用在 Linux 社团.  制作文档时 使用了 其他几个版本 的
+     手册页, 并且 根据 源程序 作了 扩充.
+
+[中
+     徐明 <xuming@users.sourceforge.net>
+
+[中
+     2003/05/13
+
+《
+     http://cmpp.linuxforum.net
+
+Linux 0.98                     December 28, 2017                    Linux 0.98

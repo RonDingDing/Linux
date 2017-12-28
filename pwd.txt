@@ -1,0 +1,53 @@
+PWD(1)                                FSF                               PWD(1)
+
+
+
+NAME
+       pwd - 显示出当前/活动目录的名称
+
+
+总
+       pwd [OPTION]
+
+
+描
+       显示出 完整的 当前 活动目录 名称.
+
+       --help 显示 帮助 信息, 然后 退出
+
+       --version
+              显示 版本 信息, 然后 退出
+
+
+报
+       发现的 bug 寄往 <bug-sh-utils@gnu.org>.
+
+
+另
+       Pwd  的 完整文档 以 Texinfo 手册 的 形式 维护. 如果 正确 安装了 info 和
+       pwd 文件, 用 命令
+
+              info pwd
+
+       可以 访问 完整 的 手册.
+
+
+版
+       Copyright © 1999 Free Software Foundation, Inc.
+       This is free software; see the source for copying conditions.  There is
+       NO  warranty;  not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
+       PURPOSE.
+
+
+[中
+       徐
+
+[中
+       2003/05/13
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+GNU sh-utils 2.0                  August 1999                           PWD(1)

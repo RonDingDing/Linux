@@ -1,0 +1,64 @@
+QUOTAON(8)                  System Manager's Manual                 QUOTAON(8)
+
+
+
+NAME
+       quotaon - 开启关闭文件系统配额
+
+总
+       quotaon [ -e | d ] [ -vug ] filesystem...
+       quotaon [ -e | d ] [ -avug ]
+
+       quotaoff [ -e | d ] [ -vug ] filesystem...
+       quotaoff [ -e | d ] [ -avug ]
+
+描
+       quotaon     通知系统在一个或者几个文件系统上使用磁盘配额。     quotaoff
+       通知系统取消某一个特定的文件系统的所有磁盘配额。
+       被指定的文件系统必须已经装载。                                  quotaon
+       要求在指定的文件系统的根目录下有相应的配额文件，         用户配额文件是
+       aquota.user，   组配额文件是   aquota.group。   这些文件可以是用   con‐
+       vertquota(8)   命令转换旧的配额文件而来，   也可以是用    quotacheck(8)
+       命令创建的一个全新的文件。 默认是用户和组配额 都被允许。
+
+选
+       -e     开启指定文件系统配额。 当程序名是 quotaon 时， 此选项是默认的。
+
+       -d     关闭指定文件系统配额。 当程序名是 quotaoff 时， 此选项是默认的。
+
+       -a     当用在任何文件系统名称的地方时，                quotaon/quotaoff
+              将允许/禁止所有在                                      /etc/mtab
+              中指定的文件系统为有磁盘配额的读-写。
+              这个选项一般被用在系统启动时开启配额。
+
+       -v     为每个开启或关闭配额的文件系统显示一条消息。
+
+       -u     处理用户配额。 这是默认选项。
+
+       -g     处理组配额。
+
+文
+       aquota.user         文件系统根目录下的用户配额文件
+       aquota.group        文件系统根目录下的组配额文件
+       /etc/mtab           已装载的文件系统表
+
+参
+       quota(1),  quotactl(2),   fstab(5),   convertquota(8),   quotacheck(8),
+       setquota(8), edquota(8), repquota(8)
+
+作
+       Jan Kara <jack@atrey.karlin.mff.cuni.cz>
+
+
+[中
+       唐
+
+[中
+       2001/7/13
+
+[中
+       http://cmpp.linuxforum.net
+
+
+
+4th Berkeley Distribution       Fri Mar 09 2001                     QUOTAON(8)

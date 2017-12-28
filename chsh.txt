@@ -1,0 +1,55 @@
+CHSH(1)                     Linux Reference Manual                     CHSH(1)
+
+
+
+NAME
+       chsh - 改变登录 shell
+
+
+总
+       chsh [ -s shell ] [ -l ] [ -u ] [ -v ] [ username ]
+
+
+描
+       chsh 用于 改变 用户的 登录 shell. 如果 没有在 命令行上 指定 shell, chsh
+       能够 做出 提示.
+
+
+   有
+       chsh 接受 系统中 任何 可执行文件 的 全路径名称.  然而, 如果  它们  没有
+       在  /etc/shells  中  列举,  chsh  将  发出 警告. 另一方面, 可以 把 chsh
+       配置成 只接受 这个文件中 列举的 shell, 除非 你是 超级用户.
+
+
+选
+       -s, --shell
+              指定 用户的 登录 shell.
+
+       -l, --list-shells
+              显示 /etc/shells 中的 shell 列表, 然后退出.
+
+       -u, --help
+              显示 使用方法, 然后退出.
+
+       -v, --version
+              显示 版本信息, 然后退出.
+
+另
+       login(1), passwd(5), shells(5)
+
+作
+       Salvatore Valente <svalente@mit.edu>
+
+
+[中
+       徐
+
+[中
+       2001/10/24 第一版
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+chsh                            7 October 1998                         CHSH(1)

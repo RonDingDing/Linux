@@ -1,0 +1,40 @@
+MESG(1)                       Linux User's Manual                      MESG(1)
+
+
+
+NAME
+       mesg - 调节用户终端的写访问权
+
+总
+       mesg [y|n]
+
+描
+       Mesg  控制  其他用户  对 你的终端 的 访问能力. 典型用途 是 允许 或 禁止
+       其他用户 向 你的终端 输出 数据. (另见 write(1)).
+
+选
+       y      允许 对 用户终端 作 写访问.
+
+       n      禁止 对 用户终端 作 写访问.
+
+       如果 没有 指定 选项, mesg 就 显示 目前 用户终端 的 访问状态.
+
+作
+       Miquel van Smoorenburg (miquels@cistron.nl)
+
+另
+       talk(1), write(1), wall(1)
+
+
+[中
+       徐
+
+[中
+       2003/05/13
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+                                 May 27, 1997                          MESG(1)

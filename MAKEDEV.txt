@@ -1,0 +1,245 @@
+MAKEDEV(8)                 Linux Programmer's Manual                MAKEDEV(8)
+
+
+
+NAME
+       MAKEDEV - 建立设备
+
+
+总
+       cd dev; ./MAKEDEV -V
+       cd dev; ./MAKEDEV [ -n ] [ -v ] update
+       cd dev; ./MAKEDEV [ -n ] [ -v ] [ -d ] device ...
+
+
+描
+       MAKEDEV  是  一个  脚本程序,  用于  在 /dev 目录下 建立 设备, 通过 这些
+       设备文件 可以 访问 位于 内核 的 驱动程序.
+
+       注意, 如果 应用程序 显示 出错信息 ``ENOENT:  No  such  file  or  direc‐
+       tory'',  一般指  设备文件 不存在, 而 ``ENODEV: No such device'' 则 表明
+       内核 没有 配置 或 装载 相应的 驱动程序.
+
+
+选
+       -V     显示 版本信息 (实际上 是 RCS 版本信息) 然后 退出.
+
+       -n     并不做 真正的 更新, 只是 显示 一下 它的 执行 效果.
+
+       -d     删除 设备文件. 主要 供 MAKEDEV 自己 用.
+
+       -v     繁琐模式.  显示出 执行的 每一个 动作.  它的 输出内容 和 -n  选项
+              的 输出内容 一样.
+
+
+自
+       由于  目前  还没有  系统  用户 和 用户组 的 标准名称, 你 可能 需要 修改
+       MAKEDEV 以 配合 你的 系统设置.  在 这个 程序  的  开始位置,  定义了  从
+       设备类型  到  用户, 用户组 和 访问权限 的 映射关系 (例如, 所有的 CD-ROM
+       设备 通过 $cdrom 变量 设置).  如果 你 打算 改变 缺省定义,  就需要  编辑
+       这个 部分.
+
+
+设
+       基
+
+       update 该选项  只用于  实现了  /proc/interrupts 的 内核(从 1.1.x 开始).
+              MAKEDEV 扫描 这个文件, 检查 目前 内核  配置了  什么设备,  它  和
+              上次  配置 的 设备 做 比较 (记录在 文件 DEVICES 中), 创建 新设备
+              或 主设备号 不相同 的 设备, 删除 没有 配置的 设备.
+
+       generic
+              创建 通用设备  子集.  包括  标准设备,  软驱,  各种硬驱,  伪终端,
+              控制台设备, 基本串行设备, 总线鼠标 和 打印口.
+
+       std    标准设备.  它们有:
+              mem - 访问 物理内存;
+              kmem - 访问 内核虚拟内存;
+              null - 空设备 (无限写入 infinite sink);
+              port - 访问 I/O 端口;
+              zero - 空(0)字节 来源 (无限读出 infinite source);
+              core - /proc/kcore 的 符号连接 (用于 内核除错);
+              full - 写访问 这个设备 一定 返回 ENOSPACE;
+              ram - 虚拟磁盘 (ramdisk);
+              tty - 访问 进程 的 控制终端.
+
+       local  运行  MAKEDEV.local.   它是个  脚本程序, 用来 创建 各种 本地设备
+              (local devices).
+
+       虚
+
+       console
+              用于 建立 关联(associate) 控制台 的 设备.  就是 虚拟终端 ttyx, x
+              从  0 到 63.  设备 tty0 是 当前的 活动 虚拟终端, 也就是 console.
+              每个 虚拟终端 有 两个 设备, vcsx  和  vcsax,  用做  虚拟终端  的
+              屏幕转储(screen-dump), vcsx 只有 文本, vcsax 还包括 属性.
+
+       串
+
+       ttyS{0..63}
+              串行口  和 对应的 拨出设备(dial-out). 对于 ttySx 设备, 有 同样的
+              设备 cuax 用于 拨出. 在 一些 简单 的 应用环境,  这种  形式  可以
+              避免 使用 协作锁.
+
+       cyclades
+              用于  cyclades  智能 I/O 串行卡 的 拨入和拨出 设备.  拨入设备 是
+              ttyCx, 对应的 拨出设备 是 cubx.  缺省情况是 创建 7线 设备,  但是
+              去掉 注释 可以 改成 15线.
+
+       伪
+
+       pty[p-s]
+              参数中的  每个字符  可以  创建  一组 共 16 个 主从伪终端对.  1.2
+              版本的 内核 支持 64 对. 主伪终端 是 pty[p-s][0-9a-f], 从伪终端是
+              tty[p-s][0-9a-f].
+
+       并
+
+       lp     标准并行口.   创建的  设备 是 lp0, lp1 和 lp2.  它们 对应的 端口
+              是 0x3bc, 0x378 和 0x278.  因此, 有些 机器 上 的  第一个  打印口
+              是 lp1.
+
+       par    lp 的替换. 端口 由 parx 命名, 代替了 lpx.
+
+       总
+
+       busmice
+              各种  总线鼠标  设备. 有 logimouse (Logitech bus mouse), psmouse
+              (PS/2-style mouse), msmouse (Microsoft Inport bus mouse) 和 ati‐
+              mouse (ATI XL bus mouse) 和 jmouse (J-mouse).
+
+       游
+
+       js     游戏操纵杆. 创建 js0 和 js1.
+
+       Disk Devices
+
+       fd[0-7]
+              软驱设备.   fdx  设备  能够  自动检测  (盘面)格式, 其他设备 采用
+              固定格式, 在 名字中 指定 容量.  命名格式 是 fdxLn, 字母  L  表明
+              软盘 规格 (d = 5.25" DD, h = 5.25" HD, D = 3.5" DD, H = 3.5" HD,
+              E = 3.5" ED).  数字 n 代表 这种规格下 的  盘面  容量  (单位是K).
+              因此  标准的容量  是  fdxd360,  fdxh1200,  fdxD720, fdxH1440, 和
+              fdxE2880.
+
+              更多的 内容 请参看 Alain Knaff 的 fdutils 发行包.
+
+              从 fd0* 到 fd3* 的 设备 是 第一个 控制器 上的 软驱, 而  fd4*  到
+              fd7* 则 位于 第二个 控制器 上.
+
+       hd[a-d]
+              AT  硬盘.  设备  hdx  提供  对  整个  硬盘 的 访问, 访问 分区 用
+              hdx[0-20].  四个 主分区 从 hdx1 到 hdx4, 它们的 逻辑分区 从 hdx5
+              开始 到 hdx20.  (主分区 可以 配置为 扩展分区, 扩展分区 可以 容纳
+              4个 逻辑分区).  缺省情况下, 一个 设备 只创建 4个 逻辑分区.  如果
+              要求 更多的 逻辑分区, 可以 在 MAKEDEV 中 去掉 相应的 注释.
+
+              驱动器  hda  和  hdb 位于 第一个 控制器 上. 如果 使用 新型的 IDE
+              驱动器 (而非 老式的 HD 驱动器), 还会有 hdc  和  hdd,  在  第二个
+              磁盘控制器上.  这些设备 同样可以 访问 IDE CDROM 驱动器.
+
+       xd[a-d]
+              XT 硬盘. 分区结构 和 IDE 硬盘 一样.
+
+       sd[a-z], sd[a-c][a-z], sdd[a-x]
+              SCSI  硬盘.   分区结构 和 IDE 硬盘 类似, 但是 逻辑分区 限制在 11
+              个 以内, (sdx5 到 sdx15).  允许 有 128个 SCSI 硬盘.
+
+       loop   自环(loopback) 磁盘设备. 允许 你 把 普通文件 当做  块设备  使用.
+              这  意味着  可以 挂载(mount) 各种 文件系统 的 映像(文件), 用起来
+              和 普通 的 文件系统 一样.  一般 创建  8个 设备, loop0 到 loop7.
+
+       磁
+
+       st[0-7]
+              SCSI 磁带.  有 可回卷(rewinding)的 磁带设备 stx 和 不可回卷(non-
+              rewinding) 的 nstx.
+
+       qic    QIC-80 磁带. 创建 的 设备 有 rmt8, rmt16, tape-d 和 tape-reset.
+
+       ftape  软驱磁带  (QIC-117).  根据 不同的 驱动方法, 有 四种 存取 方法 0,
+              1, 2 和 3, 对应 各自的 设备 rftx (可回卷) 和  nrftx  (不可回卷).
+              另外 还提供了 兼容设备 ftape 和 nftape , 它们是 rft0 和 nrft0 的
+              符号连接.
+
+       CDROM 设
+
+       scd[0-7]
+              SCSI CD 播放器.
+
+       sonycd Sony CDU-31A CD 播放器.
+
+       mcd    Mitsumi CD 播放器.
+
+       cdu535 Sony CDU-535 CD 播放器.
+
+       lmscd  LMS/Philips CD 播放器.
+
+       sbpcd{,1,2,3}
+              Sound Blaster  CD  播放器.  内核  能够  支持  16个  CDROM,  通过
+              sbpcd[0-9a-f]  访问.  它们  每四个  一组 分配 在 各个 控制器 上.
+              sbpcd 是 sbpcd0 的 符号连接.
+
+       扫
+
+       logiscan
+              Logitech ScanMan32 & ScanMan 256.
+
+       m105scan
+              Mustek M105 手持式.
+
+       ac4096 A4Tek 彩色手持式.
+
+       音
+
+       audio  建立 供 声音驱动程序 使用的 音频设备.   包括  mixer,  sequencer,
+              dsp 和 audio.
+
+       pcaudio
+              PC 扬声器 声音驱动程序 的 设备. 有 pcmixer.  pxsp, 和 pcaudio.
+
+       杂
+
+       sg     通用  SCSI  设备. 从 sga 到 sgh , sg0 到 sg7.  它们 允许 对 任何
+              SCSI 设备 发出 任意指令. 可以  查询  设备信息,  或者  控制  不是
+              磁盘, 磁带 或 CDROM 的 SCSI 设备 (例如 扫描仪, 可擦写CDROM).
+
+       fd     允许 任何程序 从 文件描述符 x 中 获取 输入, 文件名 是 /dev/fd/x.
+              而且 还创建了 /dev/stdin, /dev/stdout, 和  /dev/stderr.   (注意,
+              这些 只是 到 /proc/self/fd 的 符号连接).
+
+       ibcs2  IBCS2 模拟器 所需的 设备(和符号连接).
+
+       apm    电源管理设备.
+
+       dcf    DCF-77 radio clock 驱动程序 用的 设备.
+
+       helloworld
+              内核模块 的 演示设备.  见 模块 源程序.
+
+       网
+              Linux  曾经在  /dev  下面 放了一些 设备文件, 用于 控制 网络设备,
+              现在  取消了.   想知道  内核  支持  什么   网络设备,   请   查看
+              /proc/net/dev.
+
+
+另
+       Linux Allocated Devices, H. Peter Anvin 维护, <Peter.Anvin@linux.org>.
+
+
+作
+       Nick Holloway, <Nick.Hollowa
+
+
+[中
+       徐
+
+[中
+       2001/11/03
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+Linux                          14th August 1994                     MAKEDEV(8)

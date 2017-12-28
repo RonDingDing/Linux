@@ -1,0 +1,74 @@
+LAST,LASTB(1)                Linux 系统管理员手册                LAST,LASTB(1)
+
+
+
+NAME
+       last, lastb - 显示最近登录的用户列表
+
+总
+       last [-R] [-num] [ -n num ] [-adiox] [ -f file ] [name...]  [tty...]
+       lastb [-R] [-num] [ -n num ] [ -f file ] [-adiox] [name...]  [tty...]
+
+描
+       Last        向后检索        /var/log/wtmp        文件(也可以用       -f
+       选项指定被检索的文件)，并显示自这个文件创建以来所有登录（退出）系统的用户列表。在指定了用户名和终端名的情况下，last
+       只显示符合这些参数的记录。终端的名字可以简写，因此  last  0 等同于 last
+       tty0.
+
+       当 last 捕捉到了SIGINT 信号 （产生于中断键,通常是 control-C）或 SIGQUIT
+       信号（产生于退出键，通常是              control-\）时,             last
+       会显示它对文件已经检索了多少；在 SIGINT 信号的情况下 last 将终止运行。
+
+       每次系统重新启动时，虚用户 reboot  都会被记录到日志中。所以last  reboot
+       会列出自日志文件创建以来的所有重新启动的日志记录。.PP  Lastb 缺省上列出
+       /var/log/btmp
+       文件中的日志记录，这个文件包含有所有不良的登录企图。除此之外，等同于
+       last。
+
+选
+              -num指定 last 要显示多少行。
+
+               "-n num"等同 -num.
+
+              -R不显示主机名列。
+
+              -a在最后一列显示主机名. 和下一个选项合用时很有用
+
+              -d对于非本地的登录，Linux   不仅保存远程主机名而且保存IP地址（IP
+              number）。这个选项可以将IP地址（IP number）转换为主机名。
+
+              -i这个选项类似于显示远程主机    IP    地址（IP   number）的   -d
+              选项，只不过它用数字和点符号显示IP数
+
+              -o读取一个旧格式的 wtmp 文件 (用linux-libc5应用程序写入的).
+
+              -x显示系统关机记录和运行级别改变的日志。
+
+注
+       wtmp                              和                               btmp
+       等文件也许找不到。只有这些文件存在时，系统才记录日志信息。这是一个本地配置的问题。
+       要想这些文件起作用，你可以用一条简单的命令  touch(1) 创建它们(如, touch
+       /var/log/wtmp).
+
+相
+       /var/log/wtmp.br/var/log/btmp
+
+作
+       Miquel van Smoorenburg, miquels@cistron.nl."}}}
+
+另
+       shutdown(8),.BRlogin(1),.BRinit(8)
+
+
+[中
+       Mirnshi <Mirnshi@263.net>
+
+[中
+       2001/07/15
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+                                 Jul 29, 1999                    LAST,LASTB(1)

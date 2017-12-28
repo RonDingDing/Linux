@@ -1,0 +1,50 @@
+STAT(1)                     General Commands Manual                    STAT(1)
+
+
+
+NAME
+       stat - 打印信息节点(inode)内容
+
+SYNOPSIS(总
+       stat filename [filenames ... ]
+
+DESCRIPTION(描
+       stat 打印出一个信息节点的内容,它们显示为对人可读的格式的stat(2).
+
+       下面是stat的一个示例输出:
+       File: “/”
+       Size: 1024         Allocated Blocks: 2            Filetype: Directory
+       Mode: (0755/drwxr-xr-x)         Uid: (    0/    root)  Gid: (    0/  system)
+       Device:  0,0   Inode: 2         Links: 20
+       Access: Wed Jan  8 12:40:16 1986(00000.00:00:01)
+       Modify: Wed Dec 18 09:32:09 1985(00021.03:08:08)
+       Change: Wed Dec 18 09:32:09 1985(00021.03:08:08)
+
+DIAGNOSTICS(诊
+       “Can't  stat  file”  or  “Can't lstat file” 通常意味着它不存在.  “Can't
+       readlink file” 暗示符号链接有错误.
+
+SEE ALSO(另
+       stat(2),ls(1)
+
+AUTHOR(作
+       Rich Kulawiec, Purdue University
+
+BUGS
+       输出不是完全都可理解.
+
+                                NOT SUPPORTED BY PUCC
+
+
+[中
+       riser <boomer@ccidnet.com>
+
+[中
+       2001/08/08
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+4th Berkeley Distribution            UNSUP                             STAT(1)

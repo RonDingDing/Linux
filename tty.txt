@@ -1,0 +1,56 @@
+TTY(1)                                FSF                               TTY(1)
+
+
+
+NAME
+       tty - 显示连接标准输入的终端的文件名
+
+
+总
+       tty [OPTION]...
+
+
+描
+       显示 连接 标准输入 的 终端 的 文件名.
+
+       -s, --silent, --quiet
+              什么 都 不显示, 仅仅 返回 一个 退出状态
+
+       --help 显示 帮助信息, 然后 结束
+
+       --version
+              显示 版本信息, 然后 结束
+
+
+报
+       发现的 bug 送往 <bug-sh-utils@gnu.org>.
+
+
+另
+       tty  的 完整文档 以 Texinfo 手册 的 格式 维护. 如果 正确 安装了 info 和
+       tty 程序, 使用 命令
+
+              info tty
+
+       能够 访问到 完整 的 手册.
+
+
+版
+       Copyright © 1999 Free Software Foundation, Inc.
+       This is free software; see the source for copying conditions.  There is
+       NO  warranty;  not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
+       PURPOSE.
+
+
+[中
+       徐
+
+[中
+       2003/05/13
+
+《
+       http://cmpp.linuxforum.net
+
+
+
+GNU sh-utils 2.0                  August 1999                           TTY(1)
