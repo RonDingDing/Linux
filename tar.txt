@@ -1,11 +1,11 @@
-TAR(1)                      General Commands Manual                     TAR(1)
+tar
 
 
 
-NAME
+名称
        tar - tar 档案文件管理程序的 GNU 版本。
 
-总
+用法
        tar  [ - ] A --catenate --concatenate | c --create | d --diff --compare
        | r --append | t --list | u --update | x -extract --get [  --atime-pre‐
        serve  ]  [  -b,  --block-size  N  ]  [  -B, --read-full-blocks ] [ -C,
@@ -30,22 +30,20 @@ NAME
 
        directory1 [ directory2, ...directoryN ]
 
-描
-       tar      程序用于储存或展开      tar     存档文件。存档文件可放在磁盘中
-       ，也可以存为普通文件。
-       tar是需要参数的，可选的参数是A、c、d、r、t、u、x，您在使用tar时必须首先为
-       tar
+描述
+       tar 程序用于储存或展开 tar 存档文件。存档文件可放在磁盘中，也可以存为普通文件。
+       tar是需要参数的，可选的参数是A、c、d、r、t、u、x，您在使用tar时必须首先为 tar
        指定至少一个参数；然后，您必须指定要处理的文件或目录。如果指定一个目录则该目录下
        的所有子目录都将被加入存档。
 
-   应
-       1）展开  abc.tar.gz  使用命令：  tar  xvzf  abc.tar.gz   展开   abc.tar
+   应用：
+       1）展开  abc.tar.gz  使用命令： tar  xvzf  abc.tar.gz   展开   abc.tar
        使用命令： tar xvf abc.tar
 
-       2）将当前目录下的  man  目录及其子目录存成存档  man.tar  tar cf man.tar
-       ./man
+       2）将当前目录下的 man 目录及其子目录存成存档  man.tar
+       tar cf man.tar ./man
 
-参
+参数
        运行tar时必须要有下列参数中的至少一个才可运行
 
        -A, --catenate, --concatenate
@@ -72,7 +70,7 @@ NAME
        -x, --extract, --get
               从存档展开文件
 
-其
+其他
        --atime-preserve
               不改变转储文件的存取时间
 
@@ -80,7 +78,7 @@ NAME
               指定块大小为 Nx512 字节（缺省时 N=20)
 
        -B, --read-full-blocks
-              读取时重组块（？？？！！！）
+              读取时重组块 
 
        -C, --directory DIR
               转到指定的目录
@@ -209,8 +207,3 @@ NAME
 
        -[0-7][lmh]
               指定驱动器和密度[高中低]
-
-
-
-
-                               09 November 1999                         TAR(1)
