@@ -1,0 +1,118 @@
+arp
+
+
+
+名称
+       arp - 操控系统的 ARP 缓存列表
+
+用法
+       arp [-vn] [-H type] [-i if] [-ae] [hostname]
+
+       arp [-v] [-i if] -d hostname [pub]
+
+       arp [-v] [-H type] [-i if] -s hostname hw_addr [temp]
+
+       arp [-v] [-H type] [-i if] -s hostname hw_addr [netmask nm] pub
+
+       arp [-v] [-H type] [-i if] -Ds hostname ifname [netmask nm] pub
+
+       arp [-vnD] [-H type] [-i if] -f [filename]
+
+
+注释
+       此程序已废弃，被ip neigh替换。
+
+
+描述
+       Arp操作或显示内核的IPv4网络邻居缓存。 它可以将条目添加到表中，删除一个条目或
+       显示当前的内容。
+       ARP代表地址解析协议（Address Resolution Protocol），用于查找给定IPv4的网络
+       邻居的媒体访问控制(MAC)地址。
+
+模式
+       arp 命令将打印表的当前内容。 可以通过指定硬件地址类型，接口名称或主机地址来限
+       制打印的条目数量。
+
+       arp -d地址将删除一个ARP表项。 Root或netadmin权限是必需的。该条目是通过IP地址
+       找到的。 如果给出主机名，则在查找ARP表中的条目之前将解析它。
+
+       arp -s address hw_addr用于设置一个新的表项。 hw_addr参数的格式取决于硬件类，
+       但是对于大多数类，一般使用通常的表示方式。 以太网类（Ethernet）为用冒号分隔的
+       6个十六进制字节。添加代理 arp 条目（即设置了发布标志 P 的条目）时，可以指定网
+       代理整个子网的 arp。 这不是一个好的做法，但是因为其十分有用，旧的内核是支持的。
+       如果没有提供临时标志，则条目将永久存储在ARP缓存中。 要简化设置您自己的网络接口
+       的条目，您可以使用arp -Ds address ifname的形式。 在这种情况下，硬件地址是从
+       具有指定名称的网络界面获取的。
+
+
+选项
+       -v, --verbose
+              显示arp缓冲区的所有条目
+
+       -n, --numeric
+              以数字方式显示arp缓冲区中的条目
+
+       -H type, --hw-type type, -t type
+              设定或读取 ARP 缓存时，此可选选项告诉 arp 命令它应该查找什么类型的条目。
+              默认值为 ether (如 IEEE  802.3  10Mbps  Ethernet的硬件代码0x01)，可以
+              是 ARCnet、PROnet、AX.25 和 NET/ROM
+
+       -a     使用替代BSD风格的输出格式（不采用固定的列）
+
+       -e     使用替代BSD风格的输出格式（采用固定的列）
+
+       -D, --use-device
+              给定的参数不是hw_addr（MAC地址），而是界面的名称。 arp将使用该界面的
+              MAC地址作为表条目。 这通常是为自己设置代理ARP条目的最佳选择。
+
+       -i If, --device If
+              选择一个界面。转储ARP缓存时，只会打印与指定接口匹配的条目。当设置
+              永久或临时ARP条目时，该界面将与条目相关联; 如果没有使用这个选项，
+              内核将根据路由表进行猜测。 对于pub条目，指定的界面是即将应答ARP请求
+              的界面。
+
+              注意：这必须与IP数据报路由到的接口不同。 注：从内核2.2.0开始，不再可
+              能为整个子网设置ARP条目。 当一个路由存在并且正在转发的时候，Linux会使
+              用automagic proxy arp。 有关详细信息，请参阅arp（7）。 此外，可用于
+              删除和设置操作的dontpub选项不能用于2.4或以上内核。
+
+       -f filename, --file filename
+
+              类似于-s选项，地址信息取自文件。 建立多个ARP条目时可以使用。 数据文件的
+              名称经常是/etc/ethers，但这不是官方指定的路径。 没有文件名被指定时，
+              默认值是/etc/ethers。
+
+              The format of the file is simple; it only contains ASCII  text
+              lines  with  a  hostname,  and a hardware address separated by
+              whitespace. Additionally the pub, temp and netmask  flags  can
+              be used.
+              该文件的格式很简单，是ASCII文本，每一行的内容是一个主机名的行，空格，
+              硬件地址。 此外，pub，temp和netmask标志可以使用。
+
+
+       在使用主机名的所有地方，也可以输入IP地址以点分十进制表示。
+       主机名和硬件地址可以交换。
+
+       每一条完整的 ARP 缓存都会用 C 来标记。永久条目标用 M 来标记，已发布条目用 P 来标记。
+
+例子
+       /usr/sbin/arp -i eth0 -Ds 10.0.0.2 eth1 pub
+
+       用eth1的MAC地址来回答发送到eth0上，询问10.0.0.2的MAC地址的ARP请求。
+
+       /usr/sbin/arp -i eth1 -d 10.0.0.1
+
+       删除 eth1 界面 ARP 表的 10.0.0.1 条目。这会匹配已发布的代理 ARP 条目和永久条目。
+
+文档
+       /proc/net/arp
+       /etc/networks
+       /etc/hosts
+       /etc/ethers
+
+参考
+       ip(8)
+
+作者
+       Fred  N.  van  Kempen  <waltje@uwalt.nl.mugnet.org>,  Bernd Eckenfels
+       <net-tools@lina.inka.de>.

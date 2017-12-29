@@ -1,11 +1,11 @@
-DMESG(1)                         User Commands                        DMESG(1)
+﻿dmesg
 
 
 
-NAME
-       dmesg - print or control the kernel ring buffer
+名称
+       dmesg - 打印或控制内核环形缓冲区
 
-SYNOPSIS
+用法
        dmesg [options]
 
        dmesg --clear
@@ -14,84 +14,82 @@ SYNOPSIS
        dmesg --console-on
        dmesg --console-off
 
-DESCRIPTION
-       dmesg is used to examine or control the kernel ring buffer.
+描述
+       用于检查或控制内核环形缓冲区。
+       
+       默认动作是从内核环形缓冲区中读取所有信息。
 
-       The default action is to read all messages from kernel ring buffer.
 
-OPTIONS
-       The  --clear,  --read-clear, --console-on, --console-off and --console-
-       level options are mutually exclusive.
+选项
+       --clear,  --read-clear, --console-on, --console-off 与
+       --console-level选项互斥
 
-       -C, --clear
-              Clear the ring buffer.
+       -C, --clear              
+	      清空环形缓冲区。
 
-       -c, --read-clear
-              Clear the ring buffer contents after printing.
+       -c, --read-clear              
+              打印后清空环形缓冲区。
 
        -D, --console-off
-              Disable printing messages to the console.
+              禁用打印消息到控制台。
 
        -d, --show-delta
-              Display the timestamp and time delta spent between messages.  If
-              used together with --notime then only the time delta without the
-              timestamp is printed.
+              显示消息之间用掉的时间戳和时间增量。 如果与--notime一起使用，则只打印没有时间戳的时间增量。
 
        -e, --reltime
-              Display the local time and delta in human readable format.
+              以可读格式显示本地时间和增量。
 
        -E, --console-on
-              Enable printing messages to the console.
+              启用打印消息到控制台。
 
        -F, --file file
-              Read log from file.
+              写入日志到文件
 
        -f, --facility list
-              Restrict output to defined (comma separated) list of facilities.
-              For example
+              将输出限制为定义的设施，用逗号分隔。
+              例如：
 
                      dmesg --facility=daemon
 
-              will print messages from system daemons only.  For all supported
-              facilities see dmesg --help output.
+              只会打印系统守护进程的信息，使用dmesg --help output列出所有支持打印的设施。
 
        -H, --human
-              Enable human readable output.  See also --color,  --reltime  and
-              --nopager.
+              启用可读输出，参考 --color,  --reltime， --nopager.
 
        -h, --help
-              Print a help text and exit.
+              显示此帮助并退出。
+              
 
        -k, --kernel
-              Print kernel messages.
+              打印内核信息。
 
        -L, --color
-              Colorize important messages.
+              显示彩色消息。
+	      
 
        -l, --level list
-              Restrict  output  to  defined  (comma separated) list of levels.
-              For example
+              限制输出级别，级别用逗号分隔。
+              例如：
 
                      dmesg --level=err,warn
 
-              will print error and warning messages only.  For  all  supported
-              levels see dmesg --help output.
+              只会打印级别为error和warning的信息。dmesg --help output 列出所有支持打印的级别。
 
-       -n, --console-level level
-              Set  the  level at which logging of messages is done to the con‐
-              sole.  The level is a level number or abbreviation of the  level
-              name.  For all supported levels see dmesg --help output.
+       -n, --console-level level               
+	      设置消息记录完成的级别到控制台。 级别是级别名称的级别编号或缩写。
+              对于所有支持的级别，请参阅dmesg --help输出。
 
-              For  example,  -n  1  or  -n alert prevents all messages, except
-              emergency (panic) messages, from appearing on the console.   All
-              levels  of  messages  are  still  written to /proc/kmsg, so sys‐
-              logd(8) can still be used to control exactly where  kernel  mes‐
-              sages  appear.  When the -n option is used, dmesg will not print
-              or clear the kernel ring buffer.
+              例如: 
+	             -n 1或-n alert
+              
+	      可以防止紧急（恐慌）消息以外的所有消息出现在控制台上。 所有级别的消息仍然写入
+               /proc/kmsg，所以仍然可以使用syslogd（8）来精确控制内核消息的出现位置。 
+ 	      当使用-n选项时，dmesg将不会打印或清除内核环形缓冲区。
 
        -P, --nopager
               Do not pipe output into  a  pager,  the  pager  is  enabled  for
               --human output.
+	
 
        -r, --raw
               Print  the  raw message buffer, i.e., do not strip the log level

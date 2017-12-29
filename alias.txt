@@ -1,51 +1,46 @@
-BASH(1)                     General Commands Manual                    BASH(1)
+﻿BASH(1)                     General Commands Manual                    BASH(1)
 
 
 
-NAME
+名称
        bash - GNU Bourne-Again SHell (GNU 命令解释程序 “Bourne二世”)
 
-概
+用法
        bash [options] [file]
 
-版
-       Bash is Copyright (C) 1989-2002 by the Free Software Foundation, Inc.
-
-描
-       Bash                             是一个与                            sh
-       兼容的命令解释程序，可以执行从标准输入或者文件中读取的命令。       Bash
+描述
+       Bash 是一个与 sh
+       兼容的命令解释程序，可以执行从标准输入或者文件中读取的命令。Bash
        也整合了 Korn 和 C Shell (ksh 和 csh) 中的优秀特性。
 
-       Bash  的目标是成为遵循  IEEE  POSIX Shell and Tools specification (IEEE
+       Bash 的目标是成为遵循EEE  POSIX Shell and Tools specification (IEEE
        Working Group 1003.2，可移植操作系统规约： shell 和工具) 的实现。
 
-选
+选项
        除了在   set   内建命令的文档中讲述的单字符选项   (option)   之外，bash
        在启动时还解释下列选项。
 
-       -c string 如果有   -c  选项，那么命令将从  string  中读取。如果  string
-                 后面有参数    (argument)，它们将用于给位置参数    (positional
+       -c string 如果有 -c 选项，那么命令将从 string 中读取。如果 string
+                 后面有参数(argument)，它们将用于给位置参数    (positional
                  parameter，以 $0 起始) 赋值。
        -i        如果有 -i 选项，shell 将交互地执行 ( interactive )。
-       -l        选项使得  bash  以类似登录  shell  (login  shell)  的方式启动
+       -l        选项使得 bash 以类似登录  shell  (login  shell)  的方式启动
                  (参见下面的 启
        -r        如果有 -r 选项，shell 成为受限的 ( restricted  )  (参见下面的
                  受
-       -s        如果有                                                     -s
-                 选项，或者如果选项处理完以后，没有参数剩余，那么命令将从标准输入读取。
+       -s        如果有-s 选项，或者如果选项处理完以后，没有参数剩余，那么命令将从标准输入读取。
                  这个选项允许在启动一个交互 shell 时可以设置位置参数。
-       -D        向标准输出打印一个以  $  为前导的，以双引号引用的字符串列表。
-                 这是在当前语言环境不是          C          或           POSIX
-                 时，脚本中需要翻译的字符串。         这个选项隐含了        -n
+       -D        向标准输出打印一个以 $为前导的，以双引号引用的字符串列表。
+                 这是在当前语言环境不是 C 或 POSIX
+                 时，脚本中需要翻译的字符串。这个选项隐含了-n
                  选项；不会执行命令。
        [-+]O [shopt_option]
-                 shopt_option 是一个  shopt  内建命令可接受的选项  (参见下面的
-                 shell   内
-                 shopt_option，-O    将设置那个选项的取值；    +O     取消它。
-                 如果没有给出                              shopt_option，shopt
-                 将在标准输出上打印设为允许的选项的名称和值。   如果启动选项是
+                 shopt_option 是一个shopt内建命令可接受的选项 (参见下面的
+                 shell 内 shopt_option，-O 将设置那个选项的取值；+O 取消它。
+                 如果没有给出 shopt_option，shopt
+                 将在标准输出上打印设为允许的选项的名称和值。如果启动选项是
                  +O，输出将以一种可以重用为输入的格式显示。
-       --        --         标志选项的结束，禁止其余的选项处理。任何        --
+       --        --标志选项的结束，禁止其余的选项处理。任何--
                  之后的参数将作为文件名和参数对待。参数 - 与此等价。
 
        Bash
@@ -58,8 +53,8 @@ NAME
        --help 在标准输出显示用法信息并成功退出
        --init-file file
        --rcfile file
-              如果            shell            是交互的，执行             file
-              中的命令，而不是标准的个人初始化文件    ~/.bashrc    (参见下面的
+              如果shell 是交互的，执行 file
+              中的命令，而不是标准的个人初始化文件~/.bashrc (参见下面的
               启
 
        --login
@@ -69,24 +64,24 @@ NAME
               如果 shell 是交互的，不使用 GNU readline 库来读命令行
 
        --noprofile
-              不读取系统范围的启动文件   /etc/profile   或者任何个人初始化文件
-              ~/.bash_profile,  ~/.bash_login,  或  ~/.profile  。默认情况下，
-              bash 在作为登录 shell 启动时读取这些文件 (参见下面的  启
+              不读取系统范围的启动文件 /etc/profile 或者任何个人初始化文件
+              ~/.bash_profile, ~/.bash_login,或~/.profile。默认情况下，
+              bash 在作为登录 shell 启动时读取这些文件 (参见下面的启
               CATION) 章节)
 
-       --norc 如果    shell    是交互的，不读取/执行个人初始化文件   ~/.bashrc
+       --norc 如果 shell是交互的，不读取/执行个人初始化文件 ~/.bashrc
               这个选项在 shell 以 sh 命令启动时是默认启用的
 
        --posix
-              如果默认操作与    POSIX    1003.2    标准不同的话，改变     bash
+              如果默认操作与 POSIX 1003.2标准不同的话，改变 bash
               的行为来符合标准 (posix mode)
 
        --restricted
               shell 成为受限的 (参见下面的 受
 
        --rpm-requires
-              产生一个为使脚本运行，需要的文件的列表。    这个选项包含了    -n
-              选项。 它是为了避免进行编译期错误检测时的限制－－ Backticks,  []
+              产生一个为使脚本运行，需要的文件的列表。这个选项包含了-n
+              选项。 它是为了避免进行编译期错误检测时的限制－－ Backticks, []
               tests,  还有 evals 不会被解释，一些依赖关系可能丢失
 
        --verbose
@@ -95,26 +90,25 @@ NAME
        --version
               在标准输出显示此 bash 的版本信息并成功退出。
 
-参
-       如果选项处理之后仍有参数剩余，并且没有指定        -c        或       -s
-       选项，第一个参数将假定为一个包含  shell  命令的文件的名字。  如果  bash
-       是以这种方式启动的，                                                 $0
-       将设置为这个文件的名字，位置参数将设置为剩余的其他参数。           Bash
-       从这个文件中读取并执行命令，然后退出。                             Bash
+参数
+       如果选项处理之后仍有参数剩余，并且没有指定 -c 或 -s
+       选项，第一个参数将假定为一个包含 shell 命令的文件的名字。如果 bash
+       是以这种方式启动的，将设置为这个文件的名字，位置参数将设置为剩余的其他参数。
+       Bash 从这个文件中读取并执行命令，然后退出。 Bash
        的退出状态是脚本中执行的最后一个命令的退出状态。
        如果没有执行命令，退出状态是0。
        尝试的步骤是先试图打开在当前目录中的这个文件，接下来，
        如果没有找到，shell 将搜索脚本的 PATH 环境变量中的路径。
 
-启
-       login   shell  登录  shell，参数零的第一个字符是  -  ，或者启动时指定了
+启动
+       login shell登录shell，参数零的第一个字符是 - ，或者启动时指定了
        --login 选项的 shell。
 
-       interactive                                                      交互的
-       shell，是一个启动时没有指定非选项的参数，并且没有指定                -c
-       选项，标准输出和标准输入都连接到了终端    (在     isatty(3)     中判定)
-       的shell，或者启动时指定了  -i  选项的  shell。如果  bash 是交互的， PS1
-       环境变量将被设置，并且     $-     包含     i      ，允许一个      shell
+       interactive 交互的
+       shell，是一个启动时没有指定非选项的参数，并且没有指定 -c
+       选项，标准输出和标准输入都连接到了终端(在 isatty(3)中判定)
+       的shell，或者启动时指定了-i选项的shell。如果bash 是交互的， PS1
+       环境变量将被设置，并且 $- 包含 i ，允许一个shell
        脚本或者一个启动文件来检测这一状态。
 
        下列段落描述了                                                     bash

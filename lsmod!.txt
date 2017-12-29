@@ -1,0 +1,25 @@
+lsmod                       
+
+
+名称
+       lsmod - 显示Linux内核的模块状态
+
+用法
+       lsmod
+
+描述
+       lsmod是一个简单的程序，可以很好地格式化/ proc / modules的内容，显示当前加载了哪些内核模块。
+ 
+参考
+       insmod(8), modprobe(8), modinfo(8)
+
+作者
+       Jon Masters <jcm@jonmasters.org>
+           Developer
+
+       Lucas De Marchi <lucas.de.marchi@gmail.com>
+           Developer
+
+
+
+ 

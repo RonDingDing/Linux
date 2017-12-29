@@ -1,61 +1,57 @@
-USERADD(8)                       系统管理命令                       USERADD(8)
+﻿useradd                        系统管理命令                       useradd
 
 
 
-名
+名称
        useradd - 创建一个新用户或更新默认新用户信息
 
-大
+用法
        useradd [选项] 登录
 
        useradd -D
 
        useradd -D [选项]
 
-描
+描述
        如果使用时不带 -D 选项，useradd
        命令使用命令行上指定的值和系统的默认值创建一个新用户。根据命令行选项，useradd
        命令也会更新系统文件和创建新用户的主目录并复制初始文件。
 
-       默认上，也会为用户创建组 (察看 -g, -N, -U，和 USERGROUPS_ENAB)。
+       默认上，也会为用户创建组 (查看 -g, -N, -U，和 USERGROUPS_ENAB)。
 
-选
+选项
        useradd 可以使用的选项有：
 
-       -b, --base-dirBASE_DIR
-           The default base directory for the system if -dHOME_DIR is not
-           specified.  BASE_DIR is concatenated with the account name to
-           define the home directory. The BASE_DIR must exist otherwise the
-           home directory cannot be created.
+       -b, --base-dir BASE_DIR
+           未指定-d HOME_DIR时，系统的默认基本目录。 主目录是BASE_DIR/用户名。
+           BASE_DIR必须存在，否则不能创建主目录。
 
            如果选项没有指定，useradd 将使用 /etc/default/useradd 中的 HOME
            变量，或者默认的 /home。
 
-       -c, --commentCOMMENT
+       -c, --comment COMMENT
            任何字符串。通常是关于登录的简短描述，当前用于用户全名。
 
        -d, --home-dir HOME_DIR
-           The new user will be created using HOME_DIR as the value for the
-           user's login directory. The default is to append the LOGIN name to
-           BASE_DIR and use that as the login directory name.
+           使用HOME_DIR作为用户登录目录创建新用户。 登录目录默认是BASE_DIR/LOGIN名。
 
        -D, --defaults
            看下边，“更改默认值”子节。
 
-       -e, --expiredateEXPIRE_DATE
+       -e, --expiredate EXPIRE_DATE
            用户账户将被禁用的日期。日期以 YYYY-MM-DD 格式指定。
 
            如果没有指定，useradd 将使用 /etc/default/useradd 中 EXPIRE
            变量指定的默认过期日期，或者一个空字符串(不过期)。
 
-       -f, --inactiveINACTIVE
+       -f, --inactive INACTIVE
            密码过期后，账户被彻底禁用之前的天数。0 表示立即禁用，-1
            表示禁用这个功能。
 
            如果未指定，useradd 将使用 /etc/default/useradd 中的 INACTIVE
            指定的默认禁用周期，或者默认为 -1。
 
-       -g, --gidGROUP
+       -g, --gid GROUP
            用户初始登陆组的组名或号码。组名必须已经存在。组号码必须指代已经存在的组。
 
            如果没有指定， useradd 的行为将依赖于 /etc/login.defs 文件中的
@@ -65,14 +61,14 @@ USERADD(8)                       系统管理命令                       USERAD
            会把新用户的主组设置为 /etc/default/useradd 中 GROUP
            变量指定的值，再或者默认是 100。
 
-       -G, --groupsGROUP1[,GROUP2,...[,GROUPN]]]
+       -G, --groups GROUP1[,GROUP2,...[,GROUPN]]]
            用户还属于的附加组列表。每个组都用逗号隔开，没有中间的空格。这里的组受到了
            -g 选项给定的组同样的限制。默认上，用户只属于初始组。
 
        -h, --help
            现实帮助信息并退出。
 
-       -k, --skelSKEL_DIR
+       -k, --skel SKEL_DIR
            骨架目录，包含使用 useradd
            创建用户时，要复制到用户主目录中的文件和目录。
 
@@ -83,7 +79,7 @@ USERADD(8)                       系统管理命令                       USERAD
 
            如果可以，也复制 ACL 和扩展属性。
 
-       -K, --keyKEY=VALUE
+       -K, --key KEY=VALUE
            默认覆盖 /etc/login.defs (UID_MIN, UID_MAX, UMASK, PASS_MAX_DAYS
            及其它)。 例如：-K PASS_MAX_DAYS=-1
            可以用于创建一个密码不会过期的系统账户，即使系统账户没有密码。可以指定多个
@@ -101,13 +97,10 @@ USERADD(8)                       系统管理命令                       USERAD
            默认上，如果没有指定此选项并且 CREATE_HOME
            没有启用，不会创建主目录。
 
-           The directory where the user's home directory is created must exist
-           and have proper SELinux context and permissions. Otherwise the
-           user's home directory cannot be created or accessed.
+	   创建的用户目录必须存在，并拥有适当的SELinux上下文与准入。否则无法创建或进入目录。
 
        -M, --no-create-home
-           Do not create the user's home directory, even if the system wide
-           setting from /etc/login.defs (CREATE_HOME) is set to yes.
+	   不要创建用户的home目录，即使/etc/login.defs (CREATE_HOME)被设为yes
 
        -N, --no-user-group
            不要创建同名组，而是将用户添加到 -g 选项指定的组，或根据
@@ -121,7 +114,7 @@ USERADD(8)                       系统管理命令                       USERAD
 
            此选项只有和 -u 选项组合使用才有效。
 
-       -p, --passwordPASSWORD
+       -p, --password PASSWORD
            加密了的密码，就像 crypt(3) 的返回值。默认为禁用密码。
 
            注
@@ -131,26 +124,22 @@ USERADD(8)                       系统管理命令                       USERAD
        -r, --system
            创建一个系统账户。
 
-           System users will be created with no aging information in
-           /etc/shadow, and their numeric identifiers are chosen in the
-           SYS_UID_MIN-SYS_UID_MAX range, defined in /etc/login.defs, instead
-           of UID_MIN-UID_MAX (and their GID counterparts for the creation of
-           groups).
+	   系统用户会被创建，/etc/shadow中不会有其过期信息，识别号介乎于
+	   SYS_UID_MIN 和 SYS_UID_MAX 之间，此值在/etc/login.defs中定义。
 
            注意：useradd 不会为这种用户创建主目录，无论 /etc/login.defs
            (CREATE_HOME)
            中是的默认设置是怎样。如果想为要创建的系统账户创建主目录，需要指定
            -m 选项。
 
-       -R, --rootCHROOT_DIR
-           Apply changes in the CHROOT_DIR directory and use the configuration
-           files from the CHROOT_DIR directory.
+       -R, --root CHROOT_DIR
+           在CHROOT_DIR中应用更改，并使用CHROOT_DIR目录下的设定文件
 
-       -s, --shellSHELL
+       -s, --shell SHELL
            用户的登录 shell 名。默认为留空，让系统根据 /etc/default/useradd
            中的 SHELL 变量选择默认的登录 shell，默认为空字符串。
 
-       -u, --uidUID
+       -u, --uid UID
            用户 ID 的数字值。此值必须为唯一的，除非使用了 -o
            选项。此值必须非负，默认使用大于等于 UID_MIN，且大于任何其他用户 ID
            最小值。
@@ -163,44 +152,44 @@ USERADD(8)                       系统管理命令                       USERAD
            如果没有指定 -g, -N 和 -U 选项，默认行为由 /etc/login.defs 中的
            USERGROUPS_ENAB 变量指定。
 
-       -Z, --selinux-userSEUSER
+       -Z, --selinux-user SEUSER
            用户登陆的 SELinux 用户。默认为留空，这会造成系统选择默认的 SELinux
            用户。
 
-   更
+   更改
        只带 -D 选项使用时，useradd 将显示当前的默认值。-D
        和其它选项配合使用时，useradd
        将为指定的选项更新默认值。有效的“更改默认值”选项有：
 
-       -b, --base-dirBASE_DIR
+       -b, --base-dir BASE_DIR
            新用户主目录的路径前缀。如果创建新账户时，没有使用 -d
            选项，用户的名称将会缀在 BASE_DIR 的后边形成新用户的主目录名。
 
            这个选择在 /etc/default/useradd 中设置 HOME 选项。
 
-       -e, --expiredateEXPIRE_DATE
+       -e, --expiredate EXPIRE_DATE
            禁用此用户账户的日期。
 
            此选项在 /etc/default/useradd 中设置 EXPIRE 变量。
 
-       -f, --inactiveINACTIVE
+       -f, --inactive INACTIVE
            密码过期到账户被禁用之前的天数。
 
            这个选项在 /etc/default/useradd 中设置 INACTIVE 变量。
 
-       -g, --gidGROUP
+       -g, --gid GROUP
            新用户初始组的组名或 ID (使用了 -N/--no-user-group 或者
            /etc/login.defs 中的变量 USERGROUPS_ENAB 设置为 no
            时)。给出的组必须存在，并且数字组 ID 必须有一个已经存在的项。
 
            这个选项在 /etc/default/useradd 中设置 GROUP 变量。
 
-       -s, --shellSHELL
+       -s, --shell SHELL
            新用户的登录 shell 名。
 
            这个选项在 /etc/default/useradd 设置 SHELL 变量。
 
-注
+注释
        系统管理员负责将默认的用户文件放在 /etc/skel/
        目录中(或者命令行上、/etc/default/useradd 中指定的任何其它目录)。
 
@@ -212,7 +201,7 @@ CAVEATS
 
        用户名不能超过 32 个字符长。
 
-配
+配置
        在 /etc/login.defs 中有如下配置变量，可以用来更改此工具的行为：
 
        CREATE_HOME (boolean)
@@ -293,7 +282,7 @@ CAVEATS
            如果设置为 yes，如果组中没有成员了，userdel 将移除此用户组，useradd
            创建用户时，也会创建一个同名的默认组。
 
-文
+文档
        /etc/passwd
            用户账户信息。
 
@@ -315,7 +304,7 @@ CAVEATS
        /etc/login.defs
            Shadow 密码套件配置。
 
-退
+退出
        useradd 可以返回如下值：
 
        0
@@ -346,12 +335,9 @@ CAVEATS
            无法创建主目录
 
        14
-           can't update SELinux user mapping
+           无法更新 SELinux 用户映射
 
-参
+参考
        chfn(1), chsh(1), passwd(1), crypt(3), groupadd(8), groupdel(8),
        groupmod(8), login.defs(5), newusers(8), userdel(8), usermod(8).
-
-
-
-shadow-utils 4.1.5.1              2016-11-05                        USERADD(8)
+ 
