@@ -1,0 +1,143 @@
+﻿dmesg
+
+
+
+名称
+       dmesg - 打印或控制内核环形缓冲区
+
+用法
+       dmesg [options]
+
+       dmesg --clear
+       dmesg --read-clear [options]
+       dmesg --console-level level
+       dmesg --console-on
+       dmesg --console-off
+
+描述
+       用于检查或控制内核环形缓冲区。
+
+       默认动作是从内核环形缓冲区中读取所有信息。
+
+
+选项
+       --clear,  --read-clear, --console-on, --console-off 与
+       --console-level选项互斥
+
+       -C, --clear
+	      清空环形缓冲区。
+
+       -c, --read-clear
+              打印后清空环形缓冲区。
+
+       -D, --console-off
+              禁用打印消息到控制台。
+
+       -d, --show-delta
+              显示消息之间用掉的时间戳和时间增量。 如果与--notime一起使用，
+              则只打印没有时间戳的时间增量。
+
+       -e, --reltime
+              以可读格式显示本地时间和增量。
+
+       -E, --console-on
+              启用打印消息到控制台。
+
+       -F, --file file
+              写入日志到文件
+
+       -f, --facility list
+              将输出限制为定义的设施，用逗号分隔。
+              例如：
+
+                     dmesg --facility=daemon
+
+              只会打印系统守护进程的信息，使用dmesg --help output列出所有支持打印的设施。
+
+       -H, --human
+              启用可读输出，参考 --color,  --reltime， --nopager.
+
+       -h, --help
+              显示此帮助并退出。
+
+
+       -k, --kernel
+              打印内核信息。
+
+       -L, --color
+              显示彩色消息。
+
+
+       -l, --level list
+              限制输出级别，级别用逗号分隔。
+              例如：
+
+                     dmesg --level=err,warn
+
+              只会打印级别为error和warning的信息。dmesg --help output 列出所有支持打印的级别。
+
+       -n, --console-level level
+              设置消息记录完成的级别到控制台。 级别是级别名称的级别编号或缩写。
+              对于所有支持的级别，请参阅dmesg --help输出。
+
+              例如:
+	             -n 1或-n alert
+
+	          可以防止紧急（恐慌）消息以外的所有消息出现在控制台上。 所有级别的消息仍然写入
+              /proc/kmsg，所以仍然可以使用syslogd（8）来精确控制内核消息的出现位置。
+ 	          当使用-n选项时，dmesg将不会打印或清除内核环形缓冲区。
+
+       -P, --nopager
+              不要将输出传送到 pager 程序，输入 --human output 启用 pager 程序传送。
+             
+
+
+       -r, --raw
+              打印原始消息缓冲区，即不要去除日志级别前缀。
+
+              请注意，真正的原始格式取决于dmesg（1）如何读取内核消息。 /dev/kmsg使用
+              与syslog（2）不同的格式。 为了向后兼容，dmesg（1）总是以syslog（2）格
+              式返回数据。 来自/dev/kmsg的真实原始数据可以通过命令“dd if=/dev/kmsg
+              iflag = nonblock”来读取。
+
+       -S, --syslog
+              强制使用syslog（2）内核接口来读取内核消息。 从内核3.5.0开始，默认是使用
+              /dev/kmsg而不是syslog（2）。
+
+       -s, --buffer-size size
+              使用大小的缓冲区来查询内核环形缓冲区。 默认情况下这是16392。默认的内核
+              系统日志缓冲区大小最初为4096，从1.3.54开始为8192，自2.1.113开始为16384）
+              如果你已经设置了内核缓冲区大于默认值，那么这个选项可以用来查看整个缓冲区。
+
+       -T, --ctime
+               打印人类可读的时间戳。 时间戳可能不准确！
+               用于日志的时间源在系统暂停/恢复（SUSPEND/RESUME）之后不会更新。
+
+       -t, --notime
+              不要打印内核的时间戳
+
+       -u, --userspace
+              打印用户空间消息。
+
+       -V, --version
+              输出版本信息并退出。
+
+       -w, --follow
+              等待新消息。 只有具有可读/dev/kmsg的系统（自内核3.5.0以来）才支持此功能。
+
+       -x, --decode
+              将设施和级别（优先级）编号解码为人类可读的前缀。
+
+SEE ALSO
+       syslogd(8)
+
+AUTHORS
+       Karel Zak ⟨kzak@redhat.com⟩
+       Theodore Ts'o ⟨tytso@athena.mit.edu⟩
+
+AVAILABILITY
+       The  dmesg  command  is part of the util-linux package and is available
+       from Linux Kernel  Archive  ⟨ftp://ftp.kernel.org/pub/linux/utils/util-
+       linux/⟩.
+
+ 

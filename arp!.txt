@@ -81,11 +81,7 @@ arp
               类似于-s选项，地址信息取自文件。 建立多个ARP条目时可以使用。 数据文件的
               名称经常是/etc/ethers，但这不是官方指定的路径。 没有文件名被指定时，
               默认值是/etc/ethers。
-
-              The format of the file is simple; it only contains ASCII  text
-              lines  with  a  hostname,  and a hardware address separated by
-              whitespace. Additionally the pub, temp and netmask  flags  can
-              be used.
+ 
               该文件的格式很简单，是ASCII文本，每一行的内容是一个主机名的行，空格，
               硬件地址。 此外，pub，temp和netmask标志可以使用。
 
